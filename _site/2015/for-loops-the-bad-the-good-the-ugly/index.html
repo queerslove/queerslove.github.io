@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Nick Balestra - For* Loops: The Bad, The Good And The Ugly</title>
+  <link rel="shortcut icon" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="alternate" type="application/rss+xml" title="Nick Balestra" href="/feed.xml">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
+</head>
+<body>
+
+  <nav class="main-nav">
+    
+        <a href='/'> <span class="arrow">←</span> Home </a>
+    
+
+    
+    <a href='/about'>About </a>
+    
+    <a class="cta" href="/feed.xml">Subscribe</a>
+</nav>
+
+  
+
+  <section id="wrapper" class="">
+    <article class="post">
+    <header>
+        <h1>For* Loops: The Bad, The Good And The Ugly</h1>
+        <h2 class="headline">August 8, 2015</h2>
+    </header>
+    <section id="post-body">
+        <h2>A loop is a sequence of statements which is specified once but which may be carried out several times in succession. The code &quot;inside&quot; the loop is obeyed a specified number of times, or once for each of a collection of items, or until some condition is met, or indefinitely...meh.</h2>
+
+<p>There are 2+1 ways to do for* loops in javaScript. While each has its pros, in the following paragraphs we&#39;ll see which one is the one we should try to stick with and why.</p>
+
+<hr>
+
+<h2>The Bad</h2>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">nums</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">2</span>   <span class="nx">doSomethingWith</span><span class="p">(</span><span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+<span class="lineno">3</span> <span class="p">}</span></code></pre></div>
+
+<p>We all know him: it&#39;s a pain to type, a risk for our i&#39;s (unless we rely on ES6 and use &#39;let&#39; within the for signature when declaring the index variable) and a scope polluter in general. The for loop , also known as the &#39;for semicolon&#39; loop, is definitely the most common used control flow for looping in js</p>
+
+<hr>
+
+<h2>The Good</h2>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">nums</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">number</span><span class="p">){</span>
+<span class="lineno">2</span>   <span class="nx">doSomethingWith</span><span class="p">(</span><span class="nx">number</span><span class="p">)</span>
+<span class="lineno">3</span> <span class="p">})</span></code></pre></div>
+
+<p>When I said that &quot;there are 2+1 ways to do for* loops in javaScript&quot; I was referring to forEach(). This higher-order-function-way of looping is available on almost any js environment as a native Array method (and it comes together with some awesome bros like map() and reduce()).</p>
+
+<p>Why is it The Good? First it relieves us from The Bad&#39;s pains, Second it brings moar awesomeness to the table.</p>
+
+<p>When looping using higher order functions the lexical scope work to our advantage . Because the inner function lives inside the environment of the outer one, it can access its closure scope. The bodies of such inner functions can then access the variables around them. They can play a role similar to the {} blocks used in regular loops and conditional statements, with an important difference: variables declared inside inner functions do not end up in the environment of the outer function. And that is usually a good thing.</p>
+
+<p>For those reasons you will never be trapped by the infamous async loop nightmare, aka:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="kd">var</span> <span class="nx">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="lineno"> 2</span> 
+<span class="lineno"> 3</span> <span class="c1">// The Bad vs Async</span>
+<span class="lineno"> 4</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">nums</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 5</span>   <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="lineno"> 6</span>     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nums</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+<span class="lineno"> 7</span>   <span class="p">},</span> <span class="nx">i</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="lineno"> 8</span> <span class="p">}</span>
+<span class="lineno"> 9</span> <span class="c1">// -&gt; undefined logged 3 times</span>
+<span class="lineno">10</span> 
+<span class="lineno">11</span> <span class="c1">// The Good vs Async</span>
+<span class="lineno">12</span> <span class="nx">nums</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">number</span><span class="p">,</span> <span class="nx">i</span><span class="p">){</span>
+<span class="lineno">13</span>   <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<span class="lineno">14</span>     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">number</span><span class="p">);</span>
+<span class="lineno">15</span>   <span class="p">},</span> <span class="nx">i</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">);</span>
+<span class="lineno">16</span> <span class="p">})</span>
+<span class="lineno">17</span> <span class="c1">// -&gt; 1 2 3</span></code></pre></div>
+
+<p>Lastly, by being more expressive it represents our intent to iterate through each element of an array, allowing us to abstract over actions, not just values.This allow us to properly name such intent instead of having to rely on meaningless indexes:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">nums</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">number</span><span class="p">){</span>
+<span class="lineno">2</span>   <span class="nx">doSomethingWith</span><span class="p">(</span><span class="nx">number</span><span class="p">)</span>
+<span class="lineno">3</span> <span class="p">})</span></code></pre></div>
+
+<p>Yay, that&#39;s good!</p>
+
+<hr>
+
+<h2>The Ugly</h2>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">number</span> <span class="k">in</span> <span class="nx">nums</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">2</span>   <span class="nx">doSomethingWith</span><span class="p">(</span><span class="nx">nums</span><span class="p">[</span><span class="nx">number</span><span class="p">]);</span>
+<span class="lineno">3</span> <span class="p">}</span></code></pre></div>
+
+<p>For in is the ugly one. I bet you can now easily spot all the negative aspects we just encountered earlier for its counterpart for semicolon, like lack of expressiveness and scope pollution. For in is ugly-evil too as it will loop through prototypal properties as well. This is ok if your intent is explicitly to loop trough the prototypal chain properties as well, but that&#39;s rarely the case. The underscore method allKeys does just that, as its name clearly communicate...</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">_</span><span class="p">.</span><span class="nx">allKeys</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">){</span>
+<span class="lineno">2</span>   <span class="kd">var</span> <span class="nx">keys</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="lineno">3</span>   <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">object</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">4</span>     <span class="nx">keys</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span>
+<span class="lineno">5</span>   <span class="p">}</span>
+<span class="lineno">6</span>   <span class="k">return</span> <span class="nx">keys</span><span class="p">;</span>
+<span class="lineno">7</span> <span class="p">}</span></code></pre></div>
+
+<p>Another way to avoid using The Ugly for in loop to iterate trough your objects key/value pairs is by using Object.keys(obj) to build an array of its own properties and than use that array with the Bad for semicolon loop...cause bad is better then ugly.</p>
+
+<hr>
+
+<h2>Final thoughts</h2>
+
+<p>It&#39;s always worth knowing with who are we dealing with: the bad the good or the ugly. We should also always strive, wherever possible for the good, meaning relying on a functional library like underscore, lodash or ramda. <a href="http://nick.balestra.ch/2015/javascript-functional-libraries/">Read more about functional libraries</a> and why you should care.</p>
+
+<p>You can also implement your own little higher order function to iterate through lists and collections if you believe that a whole library will just be an overkill dependency. If that&#39;s the case I strongly suggest you to just implement your own each() and reduce() functions, as everything else, like map() filter() etc can be implemented on top of those two extremely powerful workhorses.</p>
+
+    </section>
+</article>
+<footer id="post-meta" class="clearfix">
+    <a href="http://twitter.com/nickbalestra">
+        <img class="avatar" src="/assets/images/profile.png">
+        <div>
+            <span class="dark">Nick Balestra</span>
+            <span>Software engineer</span>
+        </div>
+    </a>
+
+    <section id="sharing">
+        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://nick.balestra.ch/2015/for-loops-the-bad-the-good-the-ugly/ - For* Loops: The Bad, The Good And The Ugly by @nickbalestra"><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+    </section>
+</footer>
+
+<!-- Disqus comments -->
+
+    <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'nickbalestra';
+        var disqus_developer = 0; // developer mode is on
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+<!-- Archive -->
+
+    <ul id="post-list" class="archive readmore">
+        <h3>Read more</h3>
+        
+            <li>
+                <a href="/2015/ES6-classes-and-prototype-based-inheritance/">JS's Prototype-based inheritance and classes demystified<aside class="dates">Oct 15</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/depthFirst-vs-breadthFirst/">DepthFirst and breadthFirst tree walking<aside class="dates">Oct 10</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/ES6-Arrows-Arrays-and-Defaults/">中文测试<aside class="dates">Oct 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Installing-Ruby-Gems-Without-Sudo/">Install ruby gems without sudo on OSX<aside class="dates">Oct 04</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Installing-Node-Global/">Installing npm packages global on OSX<aside class="dates">Oct 04</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/pick-your-parsing/">Pick your parsing<aside class="dates">Sep 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/sweetjs-case-macros-for-javascript/">Case based Macros for javaScript<aside class="dates">Aug 29</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/hrb-sicp-studygroup/">HRB SICP Study group - Getting started with Lisp<aside class="dates">Aug 23</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/for-loops-the-bad-the-good-the-ugly/">For* Loops: The Bad, The Good And The Ugly<aside class="dates">Aug 08</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/build-a-simple-api-server-with-node/">Building a simple API server with node<aside class="dates">Jul 26</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Backbone-bindings-for-firebase/">Binding Backbone models & collections to Firebase<aside class="dates">Jul 24</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/classes-and-instantiation-patterns-in-javascript/">Classes and Instantiation Patterns in javaScript<aside class="dates">Jul 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Prefix-tree-data-structure/">Prefix Tree Data Structure<aside class="dates">Jul 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/javascript-functional-libraries/">JS Functional Programming Libraries<aside class="dates">Jun 13</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Kactus/">Kactus for Jekyll<aside class="dates">Jun 11</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/IIFE/">The IIFE pattern<aside class="dates">Jun 08</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/truthy-and-falsy/">Truthy and falsy values<aside class="dates">Jun 07</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/prime-algos/">Trial division, Sieve of Eratosthenes and Factorization Wheel<aside class="dates">May 25</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/using-every-to-return-some/">Using every() to return some()<aside class="dates">May 15</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/jekyll-on-github-quick-guide/">Jekyll on Github - Quick guide<aside class="dates">May 10</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/hackbot-a-js-robot-for-the-browser/">Hackbot - A js robot for the browser<aside class="dates">Jan 26</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/intro-js-onboarding-api/">Intro.js onboarding API<aside class="dates">Jan 25</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/javascripts-lexical-scope-hoisting-and-closures-without-mystery/">JavaScript’s lexical scope, hoisting and closures without mystery<aside class="dates">Jan 17</aside></a>
+            </li>
+        
+    </ul>
+
+
+
+
+
+  </section>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-62842593-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Nick Balestra - JS's Prototype-based inheritance and classes demystified</title>
+  <link rel="shortcut icon" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="alternate" type="application/rss+xml" title="Nick Balestra" href="/feed.xml">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
+</head>
+<body>
+
+  <nav class="main-nav">
+    
+        <a href='/'> <span class="arrow">←</span> Home </a>
+    
+
+    
+    <a href='/about'>About </a>
+    
+    <a class="cta" href="/feed.xml">Subscribe</a>
+</nav>
+
+  
+
+  <section id="wrapper" class="">
+    <article class="post">
+    <header>
+        <h1>JS's Prototype-based inheritance and classes demystified</h1>
+        <h2 class="headline">October 15, 2015</h2>
+    </header>
+    <section id="post-body">
+        <h2>JavaScript classes are introduced in ECMAScript 6 and are syntactical sugar over JavaScript&#39;s existing prototype-based inheritance.</h2>
+
+<p>Note: The class syntax is not introducing a new object-oriented inheritance model to JavaScript, so what is happening behind all this new sugar? Let&#39;s digg how ES6 classes works compared to the pseudcoclassical subclass pattern we are used to work with within ES5.</p>
+
+<hr>
+
+<h3>Prototype-based inheritance in ECMAScript 5</h3>
+
+<p>Let&#39;s immagine a simple scenario, where we have a <code>Car</code> class. We want the constructor function to decorate each generated instance, for example by adding a <code>brand</code> property to the car. We also want each instanciated object to have access to some class methods, for example a horn() function.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="c1">// Constructor function for the Car class.</span>
+<span class="lineno">2</span> <span class="kd">var</span> <span class="nx">Car</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">brand</span><span class="p">){</span>
+<span class="lineno">3</span>   <span class="k">this</span><span class="p">.</span><span class="nx">brand</span> <span class="o">=</span> <span class="nx">brand</span><span class="p">;</span>
+<span class="lineno">4</span> <span class="p">};</span>
+<span class="lineno">5</span> 
+<span class="lineno">6</span> <span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">horn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span><span class="k">return</span> <span class="s1">&#39;honk&#39;</span><span class="p">};</span></code></pre></div>
+
+<p>Now, let&#39;s add a subClass and let&#39;s call it Tesla (being it a truly new type of car, and therefore a subClass of <code>Car</code>). Of course, we want each Tesla to be branded &#39;tesla&#39; as well, but we also want it to have some unique features, like for example the <a href="http://www.teslamotors.com/blog/three-dog-day">ludicrousSpeed</a> function.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="c1">// Constructor function for the Tesla subClass.</span>
+<span class="lineno"> 2</span> <span class="kd">var</span> <span class="nx">Tesla</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+<span class="lineno"> 3</span>   <span class="c1">// Decorates subClass istances with Car properties</span>
+<span class="lineno"> 4</span>   <span class="c1">// Note: using the contructor call &#39;new&#39; </span>
+<span class="lineno"> 5</span>   <span class="c1">// when invoking a function will result in:</span>
+<span class="lineno"> 6</span>   <span class="c1">// this = Object.create(Tesla.prototype)</span>
+<span class="lineno"> 7</span>   <span class="c1">// Allowing to extend this with the properties we </span>
+<span class="lineno"> 8</span>   <span class="c1">// definied wihin the Car constructor:</span>
+<span class="lineno"> 9</span>   <span class="nx">Car</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;Tesla&#39;</span><span class="p">);</span>
+<span class="lineno">10</span>   <span class="c1">// and finally return this;</span>
+<span class="lineno">11</span> <span class="p">};</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span> <span class="c1">// To finish the subclass constructor, we want to make</span>
+<span class="lineno">14</span> <span class="c1">// sure that the prototypal chain delegates correctly</span>
+<span class="lineno">15</span> <span class="c1">// to the Car prototype. For that we need to:</span>
+<span class="lineno">16</span> <span class="c1">// 1 - create a new empty object, that </span>
+<span class="lineno">17</span> <span class="c1">// 2 - will delegate to the Car prototype and </span>
+<span class="lineno">18</span> <span class="c1">// 3- assign it to the Tesla prototype</span>
+<span class="lineno">19</span> <span class="nx">Tesla</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+<span class="lineno">20</span> <span class="c1">// We also need to set the constructor property of</span>
+<span class="lineno">21</span> <span class="c1">// the prototype to point back to the Car constructor.</span>
+<span class="lineno">22</span> <span class="nx">Tesla</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">Car</span><span class="p">;</span>
+<span class="lineno">23</span> 
+<span class="lineno">24</span> <span class="c1">// We can now add shared methods to any Tesla instance,</span>
+<span class="lineno">25</span> <span class="c1">// by adding them to the prototype object following </span>
+<span class="lineno">26</span> <span class="c1">// the pseudoClassical Pattern: </span>
+<span class="lineno">27</span> <span class="nx">Tesla</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">ludicrousSpeed</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span><span class="k">return</span> <span class="kc">true</span><span class="p">};</span></code></pre></div>
+
+<p>Without all the comments the Tesla subclass constructor should look something like:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="c1">// Constructor function for the Tesla subClass.</span>
+<span class="lineno">2</span> <span class="kd">var</span> <span class="nx">Tesla</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+<span class="lineno">3</span>   <span class="nx">Car</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;tesla&#39;</span><span class="p">);</span>
+<span class="lineno">4</span> <span class="p">};</span>
+<span class="lineno">5</span> 
+<span class="lineno">6</span> <span class="nx">Tesla</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+<span class="lineno">7</span> <span class="nx">Tesla</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">=</span> <span class="nx">Car</span><span class="p">;</span>
+<span class="lineno">8</span> 
+<span class="lineno">9</span> <span class="nx">Tesla</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">ludicrousSpeed</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span><span class="k">return</span> <span class="kc">true</span><span class="p">};</span></code></pre></div>
+
+<p>Running some tests, to make sure that everything works as expected:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="kd">var</span> <span class="nx">golf</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="s1">&#39;vw&#39;</span><span class="p">);</span>
+<span class="lineno"> 2</span> 
+<span class="lineno"> 3</span> <span class="nx">golf</span><span class="p">.</span><span class="nx">brand</span><span class="p">;</span> <span class="c1">// -&gt; vw</span>
+<span class="lineno"> 4</span> <span class="nx">golf</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;brand&#39;</span><span class="p">);</span> <span class="c1">// -&gt; true</span>
+<span class="lineno"> 5</span> <span class="nx">golf</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;horn&#39;</span><span class="p">);</span> <span class="c1">// -&gt; false</span>
+<span class="lineno"> 6</span> <span class="nx">golf</span><span class="p">.</span><span class="nx">horn</span><span class="p">();</span> <span class="c1">// -&gt; honk</span>
+<span class="lineno"> 7</span> <span class="nx">golf</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;ludicrousSpeed&#39;</span><span class="p">);</span> <span class="c1">// -&gt; false</span>
+<span class="lineno"> 8</span> <span class="nx">golf</span><span class="p">.</span><span class="nx">ludicrousSpeed</span><span class="p">();</span> <span class="c1">// throw err </span>
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span> 
+<span class="lineno">11</span> <span class="kd">var</span> <span class="nx">modelS</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tesla</span><span class="p">();</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">brand</span><span class="p">;</span> <span class="c1">// -&gt; tesla</span>
+<span class="lineno">14</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;brand&#39;</span><span class="p">);</span> <span class="c1">// -&gt; true</span>
+<span class="lineno">15</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;horn&#39;</span><span class="p">);</span> <span class="c1">// -&gt; false</span>
+<span class="lineno">16</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">horn</span><span class="p">();</span> <span class="c1">// -&gt; honk</span>
+<span class="lineno">17</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;ludicrousSpeed&#39;</span><span class="p">);</span> <span class="c1">// -&gt; false</span>
+<span class="lineno">18</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">ludicrousSpeed</span><span class="p">()</span> <span class="c1">// -&gt; true</span></code></pre></div>
+
+<h3>Classes in ECMAScript 6, or better, Sugar over the ES5 prototype-based inheritance</h3>
+
+<p>Now that we did brush up on the pseudoClassical subclass pattern, let see how the previous code will look like in ES6, using the new Class Syntactic sugar. Refer to the code above to better understand what is going on under the hood, it should be pretty self explanatory by now.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="c1">// Class Car</span>
+<span class="lineno"> 2</span> <span class="kr">class</span> <span class="nx">Car</span> <span class="p">{</span>
+<span class="lineno"> 3</span>   <span class="nx">constructor</span><span class="p">(</span><span class="nx">brand</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 4</span>     <span class="k">this</span><span class="p">.</span><span class="nx">brand</span> <span class="o">=</span> <span class="nx">brand</span><span class="p">;</span>
+<span class="lineno"> 5</span>   <span class="p">}</span>
+<span class="lineno"> 6</span> 
+<span class="lineno"> 7</span>   <span class="nx">horn</span><span class="p">()</span> <span class="p">{</span>
+<span class="lineno"> 8</span>     <span class="k">return</span> <span class="s1">&#39;honk&#39;</span><span class="p">;</span>
+<span class="lineno"> 9</span>   <span class="p">}</span>
+<span class="lineno">10</span> <span class="p">}</span>
+<span class="lineno">11</span> 
+<span class="lineno">12</span> <span class="c1">// SubClass Tesla</span>
+<span class="lineno">13</span> <span class="kr">class</span> <span class="nx">Tesla</span> <span class="kr">extends</span> <span class="nx">Car</span> <span class="p">{</span>
+<span class="lineno">14</span>   <span class="nx">constructor</span><span class="p">()</span> <span class="p">{</span>
+<span class="lineno">15</span>     <span class="kr">super</span><span class="p">(</span><span class="s1">&#39;Tesla&#39;</span><span class="p">);</span>
+<span class="lineno">16</span>   <span class="p">}</span>
+<span class="lineno">17</span> 
+<span class="lineno">18</span>   <span class="nx">ludicrousSpeed</span><span class="p">()</span> <span class="p">{</span>
+<span class="lineno">19</span>     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="lineno">20</span>   <span class="p">}</span>
+<span class="lineno">21</span> <span class="p">}</span></code></pre></div>
+
+<p>Running some tests, to make sure that everything works as expected:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="kd">var</span> <span class="nx">golf</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Car</span><span class="p">(</span><span class="s1">&#39;vw&#39;</span><span class="p">);</span>
+<span class="lineno"> 2</span> 
+<span class="lineno"> 3</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">golf</span><span class="p">.</span><span class="nx">brand</span><span class="p">);</span> <span class="c1">// -&gt; vw</span>
+<span class="lineno"> 4</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">golf</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;brand&#39;</span><span class="p">));</span>
+<span class="lineno"> 5</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">golf</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;horn&#39;</span><span class="p">));</span>
+<span class="lineno"> 6</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">golf</span><span class="p">.</span><span class="nx">horn</span><span class="p">());</span> <span class="c1">// -&gt; honk</span>
+<span class="lineno"> 7</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">golf</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;ludicrousSpeed&#39;</span><span class="p">));</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span> <span class="kd">var</span> <span class="nx">modelS</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Tesla</span><span class="p">();</span>
+<span class="lineno">11</span> 
+<span class="lineno">12</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">brand</span><span class="p">;</span> <span class="c1">// -&gt; tesla</span>
+<span class="lineno">13</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;brand&#39;</span><span class="p">);</span> <span class="c1">// -&gt; true</span>
+<span class="lineno">14</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;horn&#39;</span><span class="p">);</span> <span class="c1">// -&gt; false</span>
+<span class="lineno">15</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">horn</span><span class="p">();</span> <span class="c1">// -&gt; honk</span>
+<span class="lineno">16</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;ludicrousSpeed&#39;</span><span class="p">);</span> <span class="c1">// false</span>
+<span class="lineno">17</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">ludicrousSpeed</span><span class="p">();</span> <span class="c1">// -&gt; true</span>
+<span class="lineno">18</span> 
+<span class="lineno">19</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">==</span> <span class="nx">golf</span><span class="p">.</span><span class="nx">__proto__</span> <span class="c1">// -&gt; false</span>
+<span class="lineno">20</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">==</span> <span class="nx">golf</span><span class="p">.</span><span class="nx">__proto__</span> <span class="c1">// -&gt; true</span>
+<span class="lineno">21</span> 
+<span class="lineno">22</span> <span class="nx">Car</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">horn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span><span class="k">return</span> <span class="s1">&#39;LOUDER HONK&#39;</span><span class="p">};</span>
+<span class="lineno">23</span> <span class="nx">golf</span><span class="p">.</span><span class="nx">horn</span><span class="p">();</span> <span class="c1">// -&gt; LOUDER HONK</span>
+<span class="lineno">24</span> <span class="nx">modelS</span><span class="p">.</span><span class="nx">horn</span><span class="p">();</span> <span class="c1">// -&gt; LOUDER HONK</span></code></pre></div>
+
+<p>To run and test ES6 code on chrome make sure you switch on the harmony setting. To do so, just enter in your chrome address bar the folloing url: <a href="chrome://flags/#enable-javascript-harmony">chrome://flags/#enable-javascript-harmony</a>.</p>
+
+<p><strong>Note</strong> class and super are not yet supported in chrome, therefore you won&#39;t be able to fully test this ES6 out of the box. I strongly encourage you to use the <a href="http://babeljs.io">babel</a> transpiler, or play with its <a href="https://babeljs.io/repl/">online REPL</a></p>
+
+    </section>
+</article>
+<footer id="post-meta" class="clearfix">
+    <a href="http://twitter.com/nickbalestra">
+        <img class="avatar" src="/assets/images/profile.png">
+        <div>
+            <span class="dark">Nick Balestra</span>
+            <span>Software engineer</span>
+        </div>
+    </a>
+
+    <section id="sharing">
+        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://nick.balestra.ch/2015/ES6-classes-and-prototype-based-inheritance/ - JS's Prototype-based inheritance and classes demystified by @nickbalestra"><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+    </section>
+</footer>
+
+<!-- Disqus comments -->
+
+    <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'nickbalestra';
+        var disqus_developer = 0; // developer mode is on
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+<!-- Archive -->
+
+    <ul id="post-list" class="archive readmore">
+        <h3>Read more</h3>
+        
+            <li>
+                <a href="/2015/ES6-classes-and-prototype-based-inheritance/">JS's Prototype-based inheritance and classes demystified<aside class="dates">Oct 15</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/depthFirst-vs-breadthFirst/">DepthFirst and breadthFirst tree walking<aside class="dates">Oct 10</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/ES6-Arrows-Arrays-and-Defaults/">中文测试<aside class="dates">Oct 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Installing-Ruby-Gems-Without-Sudo/">Install ruby gems without sudo on OSX<aside class="dates">Oct 04</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Installing-Node-Global/">Installing npm packages global on OSX<aside class="dates">Oct 04</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/pick-your-parsing/">Pick your parsing<aside class="dates">Sep 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/sweetjs-case-macros-for-javascript/">Case based Macros for javaScript<aside class="dates">Aug 29</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/hrb-sicp-studygroup/">HRB SICP Study group - Getting started with Lisp<aside class="dates">Aug 23</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/for-loops-the-bad-the-good-the-ugly/">For* Loops: The Bad, The Good And The Ugly<aside class="dates">Aug 08</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/build-a-simple-api-server-with-node/">Building a simple API server with node<aside class="dates">Jul 26</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Backbone-bindings-for-firebase/">Binding Backbone models & collections to Firebase<aside class="dates">Jul 24</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/classes-and-instantiation-patterns-in-javascript/">Classes and Instantiation Patterns in javaScript<aside class="dates">Jul 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Prefix-tree-data-structure/">Prefix Tree Data Structure<aside class="dates">Jul 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/javascript-functional-libraries/">JS Functional Programming Libraries<aside class="dates">Jun 13</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Kactus/">Kactus for Jekyll<aside class="dates">Jun 11</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/IIFE/">The IIFE pattern<aside class="dates">Jun 08</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/truthy-and-falsy/">Truthy and falsy values<aside class="dates">Jun 07</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/prime-algos/">Trial division, Sieve of Eratosthenes and Factorization Wheel<aside class="dates">May 25</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/using-every-to-return-some/">Using every() to return some()<aside class="dates">May 15</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/jekyll-on-github-quick-guide/">Jekyll on Github - Quick guide<aside class="dates">May 10</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/hackbot-a-js-robot-for-the-browser/">Hackbot - A js robot for the browser<aside class="dates">Jan 26</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/intro-js-onboarding-api/">Intro.js onboarding API<aside class="dates">Jan 25</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/javascripts-lexical-scope-hoisting-and-closures-without-mystery/">JavaScript’s lexical scope, hoisting and closures without mystery<aside class="dates">Jan 17</aside></a>
+            </li>
+        
+    </ul>
+
+
+
+
+
+  </section>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-62842593-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

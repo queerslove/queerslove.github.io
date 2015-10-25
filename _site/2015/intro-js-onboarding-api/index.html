@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Nick Balestra - Intro.js onboarding API</title>
+  <link rel="shortcut icon" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="alternate" type="application/rss+xml" title="Nick Balestra" href="/feed.xml">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
+</head>
+<body>
+
+  <nav class="main-nav">
+    
+        <a href='/'> <span class="arrow">←</span> Home </a>
+    
+
+    
+    <a href='/about'>About </a>
+    
+    <a class="cta" href="/feed.xml">Subscribe</a>
+</nav>
+
+  
+
+  <section id="wrapper" class="">
+    <article class="post">
+    <header>
+        <h1>Intro.js onboarding API</h1>
+        <h2 class="headline">January 25, 2015</h2>
+    </header>
+    <section id="post-body">
+        <h2>Intro.js aim to deliver better introductions for websites and features with a step-by-step guide for your projects. I got the inspiration for a little pull request after having read a great post by Jan König titled “<a href="https://medium.com/@einkoenig/batman-onboarding-999d19f0cab9">Batman Onboarding</a>”.</h2>
+
+<hr>
+
+<p>In that article, Jan writes about what’s wrong with onboarding wizards, outlining four main issues:</p>
+
+<ol>
+<li><strong>Introducing all the features</strong></li>
+<li><strong>Not based on user behavior</strong></li>
+<li><strong>Too much friction</strong></li>
+<li><strong>People want to be in control</strong>
+<br><br>
+His third point, “Too much friction”, where he state how often onboarding wizards are not a part of the core user experience, but merely a layer on top of the product, made me think about those cases and how we could help them. It’s clear to me that top class teams and products, like the slack example he shows, know how to deal with those issues. But, what about all the smaller projects, apps and sites out there that don’t have all the resources or know-how needed to provide better onboarding experiences, and instead rely on off the shelf solutions like intro.js? Can something, that may not feel right, could partially address the other issues mentioned by Jan? Let see…</li>
+</ol>
+
+<p>I’ll skip the “Introducing all the features” issue as with intro.js you have the power to decide what features to include in the intro from within your code. So, I’ll focus on the “Not based on user behavior” and “People want to be in control” issues, that are pretty tight together anyhow:</p>
+
+<blockquote>
+<p>The user has only one chance to be guided through the onboading flow: right after signup. So people who just want to play around and discover some features close the wizard immediately and don’t know how to get back when they really need to be guided through the product.</p>
+</blockquote>
+
+<p>and</p>
+
+<blockquote>
+<p>Having no choice in the first steps they’re taking is obviously not a satisfying first-run experience.</p>
+</blockquote>
+
+<p><strong>What if, through intro.js, an user could both retrieve the wizard and decide where to start from in that wizard? That’s exactly what my pull request for intro.js try to solve.</strong></p>
+
+<hr>
+
+<h3>How it works</h3>
+
+<p>Batman will transform the intro.js steps defined in your markup into helpers (bringing them to the user in a “Pow / Ka-boom” style animation), that once clicked, will start the wizard from that specific point.
+<a href="https://medium.com/@einkoenig/batman-onboarding-999d19f0cab9">Check out the demo to see it in action</a>.</p>
+
+<h4>How to use it</h4>
+
+<p>We just need to call intro.js via its new batman API. This could be done via a click event: (Batman works as a toggle)</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">onclick</span><span class="o">=</span><span class="s2">&quot;javascript:introJs().batman();&quot;</span></code></pre></div>
+
+<h4>Under the hood</h4>
+
+<p>First an array containing the intro.js steps found on the page get created, together with an array of batman helpers (In case batman has been already fired).</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="kd">var</span> <span class="nx">steps</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;*[data-intro]&#39;</span><span class="p">),</span>
+<span class="lineno">2</span>     <span class="nx">helpers</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.batman-helper&#39;</span><span class="p">);</span></code></pre></div>
+
+<p>When invoked, the batman method will either add helpers on the page or remove them (in the case it has been already fired), following a toggle pattern.</p>
+
+<p>Is important to know that for batman to work you must use the intro.js data-step attribute when defining the steps in the html.</p>
+
+<p>By looping trough the <em>steps</em> array, batman will create for each item an html element (the helper) in the form of a <em>span</em>, appending it to the DOM. Every helper will contain an onclick attribute to fire intro.js. Similarly, if any helpers is found on the DOM, the method will remove it following the toggle pattern.</p>
+
+<p>Is important to know that the batman method can accept any options that you will normally pass as argument to intro.js itself. It will use those arguments when firing intro.js later from within an helper, like:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">onclick</span><span class="o">=</span><span class="s2">&quot;javascript:introJs().batman({showBullets: false, ...});&quot;</span>
+<span class="lineno">2</span> <span class="c1">// check intro.js docs, for the full list of available options</span></code></pre></div>
+
+<p>Animations are handled purely via css.</p>
+
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="lineno"> 1</span> <span class="nc">.batman-helper</span> <span class="p">{</span>
+<span class="lineno"> 2</span>   <span class="n">animation</span><span class="o">:</span> <span class="n">POW</span> <span class="m">.3s</span><span class="p">;</span>
+<span class="lineno"> 3</span> <span class="p">}</span>
+<span class="lineno"> 4</span> <span class="nc">.ka-boom</span> <span class="p">{</span>
+<span class="lineno"> 5</span>   <span class="n">animation</span><span class="o">:</span> <span class="n">KA</span><span class="o">-</span><span class="n">BOOM</span> <span class="m">.3s</span><span class="p">;</span>
+<span class="lineno"> 6</span> <span class="p">}</span>
+<span class="lineno"> 7</span> <span class="k">@-keyframes</span> <span class="nt">POW</span> <span class="p">{</span>
+<span class="lineno"> 8</span>  <span class="nt">0</span><span class="o">%</span> <span class="p">{</span><span class="n">transform</span><span class="o">:</span> <span class="n">scale</span><span class="p">(</span><span class="m">0</span><span class="o">.</span><span class="m">1</span><span class="o">,</span> <span class="m">0</span><span class="o">.</span><span class="m">1</span><span class="p">);</span> <span class="k">opacity</span><span class="o">:</span> <span class="m">0</span><span class="o">.</span><span class="m">0</span><span class="p">;}</span>
+<span class="lineno"> 9</span>  <span class="nt">50</span><span class="o">%</span> <span class="p">{</span><span class="n">transform</span><span class="o">:</span> <span class="n">scale</span><span class="p">(</span><span class="m">1</span><span class="o">.</span><span class="m">2</span><span class="o">,</span> <span class="m">1</span><span class="o">.</span><span class="m">2</span><span class="p">);</span><span class="k">opacity</span><span class="o">:</span> <span class="o">.</span><span class="m">8</span><span class="p">;}</span>
+<span class="lineno">10</span>  <span class="nt">100</span><span class="o">%</span> <span class="p">{</span><span class="n">transform</span><span class="o">:</span> <span class="n">scale</span><span class="p">(</span><span class="m">1</span><span class="o">,</span> <span class="m">1</span><span class="p">);</span> <span class="k">opacity</span><span class="o">:</span> <span class="m">1</span><span class="o">.</span><span class="m">0</span><span class="p">;}</span>
+<span class="lineno">11</span> <span class="p">}</span>
+<span class="lineno">12</span> <span class="k">@-keyframes</span> <span class="nt">KA-BOOM</span> <span class="p">{</span>
+<span class="lineno">13</span>   <span class="nt">0</span><span class="o">%</span> <span class="p">{</span><span class="n">transform</span><span class="o">:</span> <span class="n">scale</span><span class="p">(</span><span class="m">1</span><span class="o">,</span> <span class="m">1</span><span class="p">);</span> <span class="k">opacity</span><span class="o">:</span> <span class="m">1</span><span class="o">.</span><span class="m">0</span><span class="p">;}</span>
+<span class="lineno">14</span>   <span class="nt">100</span><span class="o">%</span> <span class="p">{</span><span class="n">transform</span><span class="o">:</span> <span class="n">scale</span><span class="p">(</span><span class="m">1</span><span class="o">.</span><span class="m">3</span><span class="o">,</span> <span class="m">1</span><span class="o">.</span><span class="m">3</span><span class="p">);</span> <span class="k">opacity</span><span class="o">:</span> <span class="m">0</span><span class="o">.</span><span class="m">0</span><span class="p">;}</span>
+<span class="lineno">15</span> <span class="p">}</span></code></pre></div>
+
+<hr>
+
+<h3>Final words and links</h3>
+
+<p>Take this as a proof of concept showing how some onboarding issues, as the ones outlined by Jan König in his post, could be addressed on a generic, off the shelf solution, like the popular intro.js.</p>
+
+<p>Links:</p>
+
+<ul>
+<li><a href="https://github.com/nickbalestra/intro.js/blob/feature/batman/intro.js#L271-L340">intro.js batman API code</a></li>
+<li><a href="https://github.com/nickbalestra/intro.js/blob/feature/batman/introjs.css#L345-L380">intro.js batman CSS code</a></li>
+<li><a href="http://nickbalestra.github.io/intro.js/example/batman/">batman demo</a></li>
+</ul>
+
+<p>If you have any question, comment or feedback, please get in touch on <a href="http://twitter.com/nickbalestra">twitter</a> or drop me a line at nick at balestra dot ch.</p>
+
+    </section>
+</article>
+<footer id="post-meta" class="clearfix">
+    <a href="http://twitter.com/nickbalestra">
+        <img class="avatar" src="/assets/images/profile.png">
+        <div>
+            <span class="dark">Nick Balestra</span>
+            <span>Software engineer</span>
+        </div>
+    </a>
+
+    <section id="sharing">
+        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://nick.balestra.ch/2015/intro-js-onboarding-api/ - Intro.js onboarding API by @nickbalestra"><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+    </section>
+</footer>
+
+<!-- Disqus comments -->
+
+    <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'nickbalestra';
+        var disqus_developer = 0; // developer mode is on
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+<!-- Archive -->
+
+    <ul id="post-list" class="archive readmore">
+        <h3>Read more</h3>
+        
+            <li>
+                <a href="/2015/ES6-classes-and-prototype-based-inheritance/">JS's Prototype-based inheritance and classes demystified<aside class="dates">Oct 15</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/depthFirst-vs-breadthFirst/">DepthFirst and breadthFirst tree walking<aside class="dates">Oct 10</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/ES6-Arrows-Arrays-and-Defaults/">中文测试<aside class="dates">Oct 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Installing-Ruby-Gems-Without-Sudo/">Install ruby gems without sudo on OSX<aside class="dates">Oct 04</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Installing-Node-Global/">Installing npm packages global on OSX<aside class="dates">Oct 04</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/pick-your-parsing/">Pick your parsing<aside class="dates">Sep 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/sweetjs-case-macros-for-javascript/">Case based Macros for javaScript<aside class="dates">Aug 29</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/hrb-sicp-studygroup/">HRB SICP Study group - Getting started with Lisp<aside class="dates">Aug 23</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/for-loops-the-bad-the-good-the-ugly/">For* Loops: The Bad, The Good And The Ugly<aside class="dates">Aug 08</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/build-a-simple-api-server-with-node/">Building a simple API server with node<aside class="dates">Jul 26</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Backbone-bindings-for-firebase/">Binding Backbone models & collections to Firebase<aside class="dates">Jul 24</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/classes-and-instantiation-patterns-in-javascript/">Classes and Instantiation Patterns in javaScript<aside class="dates">Jul 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Prefix-tree-data-structure/">Prefix Tree Data Structure<aside class="dates">Jul 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/javascript-functional-libraries/">JS Functional Programming Libraries<aside class="dates">Jun 13</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Kactus/">Kactus for Jekyll<aside class="dates">Jun 11</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/IIFE/">The IIFE pattern<aside class="dates">Jun 08</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/truthy-and-falsy/">Truthy and falsy values<aside class="dates">Jun 07</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/prime-algos/">Trial division, Sieve of Eratosthenes and Factorization Wheel<aside class="dates">May 25</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/using-every-to-return-some/">Using every() to return some()<aside class="dates">May 15</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/jekyll-on-github-quick-guide/">Jekyll on Github - Quick guide<aside class="dates">May 10</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/hackbot-a-js-robot-for-the-browser/">Hackbot - A js robot for the browser<aside class="dates">Jan 26</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/intro-js-onboarding-api/">Intro.js onboarding API<aside class="dates">Jan 25</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/javascripts-lexical-scope-hoisting-and-closures-without-mystery/">JavaScript’s lexical scope, hoisting and closures without mystery<aside class="dates">Jan 17</aside></a>
+            </li>
+        
+    </ul>
+
+
+
+
+
+  </section>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-62842593-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

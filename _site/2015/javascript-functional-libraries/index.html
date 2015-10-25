@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Nick Balestra - JS Functional Programming Libraries</title>
+  <link rel="shortcut icon" href="/assets/images/favicon.png">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="alternate" type="application/rss+xml" title="Nick Balestra" href="/feed.xml">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
+</head>
+<body>
+
+  <nav class="main-nav">
+    
+        <a href='/'> <span class="arrow">←</span> Home </a>
+    
+
+    
+    <a href='/about'>About </a>
+    
+    <a class="cta" href="/feed.xml">Subscribe</a>
+</nav>
+
+  
+
+  <section id="wrapper" class="">
+    <article class="post">
+    <header>
+        <h1>JS Functional Programming Libraries</h1>
+        <h2 class="headline">June 13, 2015</h2>
+    </header>
+    <section id="post-body">
+        <h2>In computer science, Functional Programming (“FP”) is a programming paradigm—a style of building the structure and elements of computer programs—that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data.</h2>
+
+<p>Shortly, FP is a coding style based on the following two best practices, which together form the concept of functions purity:</p>
+
+<ol>
+<li><strong>Immutability</strong> and</li>
+<li><strong>Statelessness</strong>
+<br><br></li>
+</ol>
+
+<p>In JavaScript, we have plenty of libraries to choose from with a functional flavor. While each has its set of goals, in the following paragraphs we&#39;ll see which are the ones we should all know about and why.</p>
+
+<hr>
+
+<h2>Underscore/lodash</h2>
+
+<blockquote>
+<p><a href="http://underscorejs.org/">Underscore.js</a> is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects.</p>
+
+<p><a href="https://lodash.com/">Lodash</a> is a JavaScript utility library delivering consistency, modularity, performance, &amp; extras.</p>
+</blockquote>
+
+<h3>Why should we care</h3>
+
+<p>As of today, <strong>lodash is the most dependended-upon package on npm</strong> while <strong>underscore is the third most dependended-upon</strong>.</p>
+
+<p><a href="https://www.npmjs.com/package/lodash">Lodash</a> in numbers (impressive):</p>
+
+<blockquote>
+<ul>
+<li>500,000+ daily downloads</li>
+<li>13,000,000+ monthly downloads</li>
+<li><a href="https://www.npmjs.com/browse/depended/lodash">11,300+</a> depended-upon packages</li>
+</ul>
+</blockquote>
+
+<p><br>
+<a href="https://www.npmjs.com/package/underscore">Underscore</a> in numbers (still pretty impressive):</p>
+
+<blockquote>
+<ul>
+<li>300,000+ daily downloads</li>
+<li>6,900,000+ monthly downloads</li>
+<li><a href="https://www.npmjs.com/browse/depended/underscore">9,400+</a> depended-upon packages</li>
+</ul>
+</blockquote>
+
+<p><span></span></p>
+
+<h3>Things worth knowing about underscore</h3>
+
+<h4>Chaining</h4>
+
+<p>Underscore comes with a chain method. It allows us to use _.chain() to wrap a collection and then call other underscore functions on it before finally calling _.value() to unwrap the final result.</p>
+
+<p>Taking a movies collection:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="kd">var</span> <span class="nx">movies</span> <span class="o">=</span> <span class="p">[</span>
+<span class="lineno">2</span>   <span class="p">{</span> <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;Mad Max: Fury Road&quot;</span><span class="p">,</span> <span class="nx">ratings</span><span class="o">:</span> <span class="p">[</span><span class="mf">8.9</span><span class="p">,</span> <span class="mf">9.9</span><span class="p">,</span> <span class="mf">7.9</span><span class="p">],</span> <span class="nx">year</span><span class="o">:</span> <span class="mi">2015</span> <span class="p">},</span>
+<span class="lineno">3</span>   <span class="p">{</span> <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;Tomorrowland&quot;</span><span class="p">,</span> <span class="nx">ratings</span><span class="o">:</span> <span class="p">[</span><span class="mf">6.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">],</span> <span class="nx">year</span><span class="o">:</span> <span class="mi">2015</span> <span class="p">},</span>
+<span class="lineno">4</span>   <span class="p">{</span> <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;Jurassic World&quot;</span><span class="p">,</span> <span class="nx">ratings</span><span class="o">:</span> <span class="p">[</span><span class="mf">7.2</span><span class="p">,</span> <span class="mf">8.2</span><span class="p">,</span> <span class="mf">9.2</span><span class="p">],</span> <span class="nx">year</span><span class="o">:</span> <span class="mi">2015</span> <span class="p">},</span>
+<span class="lineno">5</span>   <span class="p">{</span> <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;Inception&quot;</span><span class="p">,</span> <span class="nx">ratings</span><span class="o">:</span> <span class="p">[</span><span class="mf">7.5</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">],</span> <span class="nx">year</span><span class="o">:</span> <span class="mi">2010</span> <span class="p">}</span>
+<span class="lineno">6</span> <span class="p">];</span></code></pre></div>
+
+<p>and some basic helpers</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">numbers</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 2</span>     <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">numbers</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">n</span><span class="p">){</span>
+<span class="lineno"> 3</span>         <span class="k">return</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">n</span> <span class="p">},</span> <span class="mi">0</span><span class="p">);</span>
+<span class="lineno"> 4</span> <span class="p">};</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span> <span class="kd">var</span> <span class="nx">average</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">numbers</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 7</span>     <span class="k">return</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">numbers</span><span class="p">)</span> <span class="o">/</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<span class="lineno"> 8</span> <span class="p">};</span>
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span> <span class="kd">var</span> <span class="nx">isRecommended</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">movie</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">11</span>     <span class="k">return</span> <span class="nx">average</span><span class="p">(</span><span class="nx">movie</span><span class="p">.</span><span class="nx">ratings</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="lineno">12</span> <span class="p">};</span></code></pre></div>
+
+<p>We can now create a complex operation by simply chaining together underscore functions. For example, to discover the lowest rating ever given to a recommended movie:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="nx">_</span><span class="p">.</span><span class="nx">chain</span><span class="p">(</span><span class="nx">movies</span><span class="p">)</span>
+<span class="lineno">2</span>   <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">isRecommended</span><span class="p">)</span>
+<span class="lineno">3</span>   <span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;ratings&#39;</span><span class="p">)</span>
+<span class="lineno">4</span>   <span class="p">.</span><span class="nx">flatten</span><span class="p">()</span>
+<span class="lineno">5</span>   <span class="p">.</span><span class="nx">min</span><span class="p">()</span>
+<span class="lineno">6</span>   <span class="p">.</span><span class="nx">value</span><span class="p">()</span>
+<span class="lineno">7</span> <span class="c1">// → 7.2</span></code></pre></div>
+
+<h4>Composition</h4>
+
+<p>If _.chain seems well known and commonly used, fewer may be aware of an underscore hidden gem: compose. Compose is as close as we can get to function composition within underscore, by allowing us to returns the composition of a list of functions, where each function consumes the return value of the function that follows.</p>
+
+<p>In math terms, composing the functions f(), g(), and h() produces f(g(h())).</p>
+
+<p>Given some generic functions</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="kd">var</span> <span class="nx">greet</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">){</span>
+<span class="lineno">2</span>     <span class="k">return</span> <span class="s2">&quot;hi: &quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">;</span>
+<span class="lineno">3</span> <span class="p">};</span>
+<span class="lineno">4</span> 
+<span class="lineno">5</span> <span class="kd">var</span> <span class="nx">exclaim</span>  <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">statement</span><span class="p">){</span>
+<span class="lineno">6</span>     <span class="k">return</span> <span class="nx">statement</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;!&quot;</span><span class="p">;</span>
+<span class="lineno">7</span> <span class="p">};</span></code></pre></div>
+
+<p>We can now _.compose them to create a more powerful function out of the two:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="kd">var</span> <span class="nx">welcome</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">compose</span><span class="p">(</span><span class="nx">greet</span><span class="p">,</span> <span class="nx">exclaim</span><span class="p">);</span>
+<span class="lineno">2</span> <span class="nx">welcome</span><span class="p">(</span><span class="s1">&#39;there&#39;</span><span class="p">)</span>
+<span class="lineno">3</span> <span class="c1">// → hi: THERE!</span></code></pre></div>
+
+<p><em>Note: compose invokes the provided functions from right to left.</em></p>
+
+<h3>Things worth knowing about lodash</h3>
+
+<h4>Composition left</h4>
+
+<p>Lodash is born as a fork of underscore. Therefore, everything we just saw can also be achieved with lodash. For example, we may like compose but it may feel weird for its right to left math derived invocation. Lodash <a href="https://lodash.com/docs#flowRight">still permits that mathematical approach</a> but also features a left-to-right version of the method simply called <a href="https://lodash.com/docs#flow">_.flow</a>.</p>
+
+<p>Lodash, representing underscore gen2 offer better performances thanks to advanced code optimizations. It can act as a drop-in replacement for underscore, and it won&#39;t be hard to replace the first with the latter.</p>
+
+<p>Among the extra perks that come with lodash one is worth exploring:</p>
+
+<h4>Currying</h4>
+
+<p>In JavaScript a function takes some arguments and returns a value.
+We can call a function with:</p>
+
+<ul>
+<li>fewer parameters then the function&#39;s arity (<em>arguments.length&lt;function.length</em>), most probably with odd results, or</li>
+<li>with too many, exceding the function&#39;s arity (<em>arguments.length&gt;function.length</em>) with the result that the arguments in excess normally get ignored.</li>
+</ul>
+
+<p><br>
+A curried function is a function that may be invoked with fewer arguments than its original arity, returning a function ready to be invoked with the remaining ones.</p>
+
+<p>Given a sum3 function, that when invoked with three arguments will return their sum, we can create its curried version as follows:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="kd">var</span> <span class="nx">sum3</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno"> 2</span>   <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">+</span> <span class="nx">c</span><span class="p">;</span>
+<span class="lineno"> 3</span> <span class="p">};</span>
+<span class="lineno"> 4</span> 
+<span class="lineno"> 5</span> <span class="kd">var</span> <span class="nx">curriedSum</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">curry</span><span class="p">(</span><span class="nx">sum3</span><span class="p">);</span>
+<span class="lineno"> 6</span> 
+<span class="lineno"> 7</span> <span class="nx">curriedSum</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="mi">2</span><span class="p">)(</span><span class="mi">3</span><span class="p">);</span>
+<span class="lineno"> 8</span> <span class="c1">// → 6</span>
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span> <span class="nx">curriedSum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)(</span><span class="mi">3</span><span class="p">);</span>
+<span class="lineno">11</span> <span class="c1">// → 6</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span> <span class="nx">curriedSum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="lineno">14</span> <span class="c1">// → 6</span>
+<span class="lineno">15</span> 
+<span class="lineno">16</span> <span class="c1">// using empty placeholders</span>
+<span class="lineno">17</span> <span class="nx">curriedSum</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="nx">_</span><span class="p">,</span> <span class="mi">3</span><span class="p">)(</span><span class="mi">2</span><span class="p">);</span>
+<span class="lineno">18</span> <span class="c1">// → 6</span></code></pre></div>
+
+<p>If you love the taste of curry (and you should, it&#39;s damn tasty) then you&#39;ll
+probably need to know about Ramda.</p>
+
+<hr>
+
+<h2>Ramda</h2>
+
+<blockquote>
+<p><a href="http://ramdajs.com/">Ramda</a> is a practical functional library for Javascript programmers.</p>
+</blockquote>
+
+<p>Ramda is not a drop-in replacement for underscore or lodash, as it has a more focused goal. It&#39;s a library designed specifically for a functional programming style, one that makes it easy to create functional pipelines, one that never mutates user data.</p>
+
+<h3>Things worth knowing about Ramda</h3>
+
+<h4>Function first, data last API</h4>
+
+<p>The parameters to Ramda functions are arranged to make it convenient for currying as the data to be operated on is supplied last.</p>
+
+<p>lodash map vs. rampda map functions</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="c1">// lodash</span>
+<span class="lineno">2</span> <span class="nx">_</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">collection</span><span class="p">,</span> <span class="nx">iteratee</span><span class="p">)</span>
+<span class="lineno">3</span> 
+<span class="lineno">4</span> <span class="c1">// Ramda</span>
+<span class="lineno">5</span> <span class="nx">R</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">iteratee</span><span class="p">,</span> <span class="nx">collection</span><span class="p">)</span></code></pre></div>
+
+<h4>Auto-currying</h4>
+
+<p>Ramda functions are automatically curried. Currying allows you to easily build up new functions from old ones simply by not supplying the final parameters. This coupled with the function first, data last API make ramda not just functional purer, but also purely awesome.</p>
+
+<p>Let&#39;s then rebuild part of the underscore/lodash code we saw earlier with ramda instead.</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno">1</span> <span class="c1">// Underscore/lodash style:</span>
+<span class="lineno">2</span> <span class="kd">var</span> <span class="nx">recommendedMovies</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">movies</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">3</span>   <span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">movies</span><span class="p">,</span> <span class="nx">isRecommended</span><span class="p">);</span>
+<span class="lineno">4</span> <span class="p">};</span>
+<span class="lineno">5</span> 
+<span class="lineno">6</span> <span class="c1">// Ramda style:</span>
+<span class="lineno">7</span> <span class="kd">var</span> <span class="nx">recommendedMovies</span> <span class="o">=</span> <span class="nx">R</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">isRecommended</span><span class="p">);</span></code></pre></div>
+
+<p>Because every ramda function automatically curry, omitting to pass the collection argument to R.filter return us the curryed function so that we are ready to go.</p>
+
+<p>Other previously encountered code re-factored with Ramda:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="c1">// Underscore:</span>
+<span class="lineno"> 2</span> <span class="nx">_</span><span class="p">.</span><span class="nx">chain</span><span class="p">(</span><span class="nx">movies</span><span class="p">)</span>
+<span class="lineno"> 3</span>   <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">isRecommended</span><span class="p">)</span>
+<span class="lineno"> 4</span>   <span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;ratings&#39;</span><span class="p">)</span>
+<span class="lineno"> 5</span>   <span class="p">.</span><span class="nx">flatten</span><span class="p">()</span>
+<span class="lineno"> 6</span>   <span class="p">.</span><span class="nx">min</span><span class="p">()</span>
+<span class="lineno"> 7</span>   <span class="p">.</span><span class="nx">value</span><span class="p">()</span>
+<span class="lineno"> 8</span> <span class="c1">// → 7.2</span>
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span> <span class="c1">// lodash:</span>
+<span class="lineno">11</span> <span class="nx">_</span><span class="p">(</span><span class="nx">movies</span><span class="p">)</span>
+<span class="lineno">12</span>   <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">isRecommended</span><span class="p">)</span>
+<span class="lineno">13</span>   <span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;ratings&#39;</span><span class="p">)</span>
+<span class="lineno">14</span>   <span class="p">.</span><span class="nx">flatten</span><span class="p">()</span>
+<span class="lineno">15</span>   <span class="p">.</span><span class="nx">min</span><span class="p">()</span>
+<span class="lineno">16</span> <span class="c1">// → 7.2</span>
+<span class="lineno">17</span> 
+<span class="lineno">18</span> <span class="c1">// Ramda:</span>
+<span class="lineno">19</span> <span class="nx">R</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span>
+<span class="lineno">20</span>   <span class="nx">R</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">isRecommended</span><span class="p">),</span>
+<span class="lineno">21</span>   <span class="nx">R</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;ratings&#39;</span><span class="p">),</span>
+<span class="lineno">22</span>   <span class="nx">R</span><span class="p">.</span><span class="nx">flatten</span><span class="p">(),</span>
+<span class="lineno">23</span>   <span class="nx">R</span><span class="p">.</span><span class="nx">min</span><span class="p">()</span>
+<span class="lineno">24</span> <span class="p">)(</span><span class="nx">movies</span><span class="p">);</span>
+<span class="lineno">25</span> <span class="c1">// → 7.2</span>
+<span class="lineno">26</span> <span class="c1">// Spot something? Yes pipe return a function.</span></code></pre></div>
+
+<p>Is worth mentioning that there is a version of lodash that comes packed with functionFirst dataLast APIs and auto-currying, called <strong>lodash-fp</strong>. Let&#39;s see how that could be beneficial, for example within a composition (flow) taken from the example we just saw:</p>
+
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="lineno"> 1</span> <span class="c1">// lodash flow</span>
+<span class="lineno"> 2</span> <span class="c1">// passing anonimous functions</span>
+<span class="lineno"> 3</span> <span class="nx">_</span><span class="p">.</span><span class="nx">flow</span><span class="p">(</span>
+<span class="lineno"> 4</span>   <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">){</span><span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">list</span><span class="p">,</span> <span class="nx">isRecommended</span><span class="p">);},</span>
+<span class="lineno"> 5</span>   <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">){</span><span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="nx">list</span><span class="p">,</span> <span class="s1">&#39;ratings&#39;</span><span class="p">);},</span>
+<span class="lineno"> 6</span>   <span class="nx">_</span><span class="p">.</span><span class="nx">flatten</span><span class="p">,</span>
+<span class="lineno"> 7</span>   <span class="nx">_</span><span class="p">.</span><span class="nx">min</span><span class="p">)(</span><span class="nx">movies</span><span class="p">)</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span> <span class="c1">// lodash flow</span>
+<span class="lineno">10</span> <span class="c1">// passing named functions</span>
+<span class="lineno">11</span> <span class="kd">var</span> <span class="nx">customfilter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">){</span><span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">list</span><span class="p">,</span> <span class="nx">isRecommended</span><span class="p">);};</span>
+<span class="lineno">12</span> <span class="kd">var</span> <span class="nx">custompluck</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">list</span><span class="p">){</span><span class="k">return</span> <span class="nx">_</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="nx">list</span><span class="p">,</span> <span class="s1">&#39;ratings&#39;</span><span class="p">);};</span>
+<span class="lineno">13</span> 
+<span class="lineno">14</span> <span class="nx">_</span><span class="p">.</span><span class="nx">flow</span><span class="p">(</span>
+<span class="lineno">15</span>   <span class="nx">customfilter</span><span class="p">,</span>
+<span class="lineno">16</span>   <span class="nx">custompluck</span><span class="p">,</span>
+<span class="lineno">17</span>   <span class="nx">_</span><span class="p">.</span><span class="nx">flatten</span><span class="p">,</span>
+<span class="lineno">18</span>   <span class="nx">_</span><span class="p">.</span><span class="nx">min</span><span class="p">)(</span><span class="nx">movies</span><span class="p">)</span>
+<span class="lineno">19</span> 
+<span class="lineno">20</span> <span class="c1">// lodash flow</span>
+<span class="lineno">21</span> <span class="c1">// passing curried functions</span>
+<span class="lineno">22</span> <span class="kd">var</span> <span class="nx">curriedfilter</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">curry</span><span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">filter</span><span class="p">)(</span><span class="nx">_</span><span class="p">,</span><span class="nx">isRecommended</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
+<span class="lineno">23</span> <span class="kd">var</span> <span class="nx">curriedpluck</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">curry</span><span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">pluck</span><span class="p">)(</span><span class="nx">_</span><span class="p">,</span> <span class="s1">&#39;ratings&#39;</span><span class="p">)</span>
+<span class="lineno">24</span> 
+<span class="lineno">25</span> <span class="nx">_</span><span class="p">.</span><span class="nx">flow</span><span class="p">(</span>
+<span class="lineno">26</span>   <span class="nx">curriedfilter</span><span class="p">,</span>
+<span class="lineno">27</span>   <span class="nx">curriedpluck</span><span class="p">,</span>
+<span class="lineno">28</span>   <span class="nx">_</span><span class="p">.</span><span class="nx">flatten</span><span class="p">,</span>
+<span class="lineno">29</span>   <span class="nx">_</span><span class="p">.</span><span class="nx">min</span><span class="p">)(</span><span class="nx">movies</span><span class="p">)</span>
+<span class="lineno">30</span> 
+<span class="lineno">31</span> <span class="c1">// lodash-fp flow</span>
+<span class="lineno">32</span> <span class="c1">// Function-first + Auto-curry awesomeness in action</span>
+<span class="lineno">33</span> <span class="nx">_</span><span class="p">.</span><span class="nx">flow</span><span class="p">(</span>
+<span class="lineno">34</span>   <span class="nx">_</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">isRecommended</span><span class="p">),</span>
+<span class="lineno">35</span>   <span class="nx">_</span><span class="p">.</span><span class="nx">pluck</span><span class="p">(</span><span class="s1">&#39;ratings&#39;</span><span class="p">),</span>
+<span class="lineno">36</span>   <span class="nx">_</span><span class="p">.</span><span class="nx">flatten</span><span class="p">,</span>
+<span class="lineno">37</span>   <span class="nx">_</span><span class="p">.</span><span class="nx">min</span>
+<span class="lineno">38</span> <span class="p">)(</span><span class="nx">movies</span><span class="p">);</span></code></pre></div>
+
+<p>We now know why we should care about some functional libraries, how to do chaining, composition and currying with them. For more info check their respective documentation:</p>
+
+<ul>
+<li><a href="http://devdocs.io/underscore/">Underscore on DevDocs.io</a></li>
+<li><a href="http://devdocs.io/lodash/">lodash on DevDocs.io</a></li>
+<li><a href="http://ramdajs.com/docs/">Ramda docs</a></li>
+<li><a href="https://github.com/lodash/lodash-fp">lodash-fp</a></li>
+</ul>
+
+    </section>
+</article>
+<footer id="post-meta" class="clearfix">
+    <a href="http://twitter.com/nickbalestra">
+        <img class="avatar" src="/assets/images/profile.png">
+        <div>
+            <span class="dark">Nick Balestra</span>
+            <span>Software engineer</span>
+        </div>
+    </a>
+
+    <section id="sharing">
+        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://nick.balestra.ch/2015/javascript-functional-libraries/ - JS Functional Programming Libraries by @nickbalestra"><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+    </section>
+</footer>
+
+<!-- Disqus comments -->
+
+    <section class="disqus">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        var disqus_shortname = 'nickbalestra';
+        var disqus_developer = 0; // developer mode is on
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+<!-- Archive -->
+
+    <ul id="post-list" class="archive readmore">
+        <h3>Read more</h3>
+        
+            <li>
+                <a href="/2015/ES6-classes-and-prototype-based-inheritance/">JS's Prototype-based inheritance and classes demystified<aside class="dates">Oct 15</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/depthFirst-vs-breadthFirst/">DepthFirst and breadthFirst tree walking<aside class="dates">Oct 10</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/ES6-Arrows-Arrays-and-Defaults/">中文测试<aside class="dates">Oct 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Installing-Ruby-Gems-Without-Sudo/">Install ruby gems without sudo on OSX<aside class="dates">Oct 04</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Installing-Node-Global/">Installing npm packages global on OSX<aside class="dates">Oct 04</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/pick-your-parsing/">Pick your parsing<aside class="dates">Sep 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/sweetjs-case-macros-for-javascript/">Case based Macros for javaScript<aside class="dates">Aug 29</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/hrb-sicp-studygroup/">HRB SICP Study group - Getting started with Lisp<aside class="dates">Aug 23</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/for-loops-the-bad-the-good-the-ugly/">For* Loops: The Bad, The Good And The Ugly<aside class="dates">Aug 08</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/build-a-simple-api-server-with-node/">Building a simple API server with node<aside class="dates">Jul 26</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Backbone-bindings-for-firebase/">Binding Backbone models & collections to Firebase<aside class="dates">Jul 24</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/classes-and-instantiation-patterns-in-javascript/">Classes and Instantiation Patterns in javaScript<aside class="dates">Jul 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Prefix-tree-data-structure/">Prefix Tree Data Structure<aside class="dates">Jul 05</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/javascript-functional-libraries/">JS Functional Programming Libraries<aside class="dates">Jun 13</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/Kactus/">Kactus for Jekyll<aside class="dates">Jun 11</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/IIFE/">The IIFE pattern<aside class="dates">Jun 08</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/truthy-and-falsy/">Truthy and falsy values<aside class="dates">Jun 07</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/prime-algos/">Trial division, Sieve of Eratosthenes and Factorization Wheel<aside class="dates">May 25</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/using-every-to-return-some/">Using every() to return some()<aside class="dates">May 15</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/jekyll-on-github-quick-guide/">Jekyll on Github - Quick guide<aside class="dates">May 10</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/hackbot-a-js-robot-for-the-browser/">Hackbot - A js robot for the browser<aside class="dates">Jan 26</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/intro-js-onboarding-api/">Intro.js onboarding API<aside class="dates">Jan 25</aside></a>
+            </li>
+        
+            <li>
+                <a href="/2015/javascripts-lexical-scope-hoisting-and-closures-without-mystery/">JavaScript’s lexical scope, hoisting and closures without mystery<aside class="dates">Jan 17</aside></a>
+            </li>
+        
+    </ul>
+
+
+
+
+
+  </section>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-62842593-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>
