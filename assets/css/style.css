@@ -20,12 +20,25 @@ margin-bottom: 20px;
 html, body { height: 100%; }
 
 body {
-	/*font:16px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;*/
-	font-family: Helvetica, Tahoma, Arial, STXihei, " 华文细黑 ", "Microsoft YaHei", " 微软雅黑 ", SimSun, " 宋体 ", Heiti, " 黑体 ", sans-serif;
-	/*font-family: Georgia, 'Xin Gothic', 'Hiragino Sans GB', 'WenQuanYi Micro Hei', 'Microsoft YaHei', sans-serif;*/
-	color: #222;
-	-webkit-font-smoothing: antialiased;
-	text-rendering: optimizeLegibility;
+    height: 100%;
+    font: 400 1em/1.8 Avenir,'Segoe UI','Hiragino Sans GB',STHeiti,'Microsoft Yahei','Microsoft Sans Serif','WenQuanYi Micro Hei',sans-serif;
+    background-color: #fdfdfd;
+    margin: 0;
+}
+
+body p {
+
+    font-size: 80%;
+    line-height: 1.6em;
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    letter-spacing: 0.6px;
+
 }
 
 h1 {
@@ -55,9 +68,31 @@ h2 {
 .profile #header {
 	border-bottom: 1px solid #eee;
 	margin-bottom: 40px;
-	padding-bottom: 40px;
 	text-align: center;
 	position: relative;
+}
+
+.profile #header .h1 {
+	transition: all 0.15s ease;	    
+	border: 0;
+    vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+.profile #header .h2 {
+	font-size: 80%;
+    line-height: 1.0em;
+    margin-top: 0em;
+    margin-bottom: 0.8em;
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    letter-spacing: 1px;
 }
 
 .profile #avatar {
@@ -70,16 +105,24 @@ h2 {
 
 .profile h1 {
 	font-weight: 400;
-	letter-spacing: 0px;
-	font-size: 20px;
-	color: #222;
+	letter-spacing: 0.5px;
+
+
+	color: #333;
+    display: block;
+    font: bold 18px/1.7 "Helvetica Neue",helvetica,Arial,sans-serif;
+
+    -webkit-margin-before: 0.2em;
+    -webkit-margin-after: -0.4em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
 }
 
 .profile h2 {
-	font-size: 20px;
-	  font-weight: 300;
-	  color: #aaa;
-	  margin-top: 10px;
+	font-size: 18px;
+	font-weight: 300;
+	color: #aaa;
+	margin-top: 10px;
 	  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	  font-style: normal;
 
@@ -151,7 +194,7 @@ p a { color: #5694f1; }
 /*Transitions*/
 a,
 #post-nav a,
-#post-list a	{
+#post-list a {
 	-webkit-transition: all 0.15s ease;
 	-moz-transition: all 0.15s ease;
 	-ms-transition: all 0.15s ease;
@@ -167,7 +210,8 @@ ol li {
 }
 
 /* Line Height */
-#post-body, p { line-height:1.2; }
+
+
 
 b, strong { font-weight: 500;
   color: #1E2025; }
@@ -184,7 +228,7 @@ em, i { font-style: italic; }
 
 .description {
 	float: right;
-	font: italic 14px/1.4em Georgia,serif;
+	font: italic; 14px/1.4em Georgia,serif;
 	color: #aaa;
 }
 
@@ -195,6 +239,7 @@ em, i { font-style: italic; }
 	letter-spacing: -1px;
 	color: #222;
 	font-weight: bold;
+
 }
 
 .home h2 {
@@ -208,7 +253,7 @@ em, i { font-style: italic; }
 }
 
 .post h1 {
-	margin-bottom:2 0px;
+	margin-bottom: 20px;
 	color: #222;
 	/*font: 300 32px/1.4em "Helvetica Neue", Helvetica,Arial,sans-serif;*/
 }
@@ -224,7 +269,7 @@ em, i { font-style: italic; }
 	/*font: italic 22px/1.3em Georgia,serif;*/
 	/*font: normal 13px/1.5em "Helvetica Neue",Helvetica,Arial,sans-serif;*/
 	margin: -5px 0 40px 0;
-	color: #b2b9be;
+	/*color: #b2b9be;*/
 	font-size: 13px;
 	text-transform: uppercase;
 	letter-spacing: 2px;
@@ -232,9 +277,13 @@ em, i { font-style: italic; }
 	display: inline-block;
 }
 
+
+
 #post-list h2 {
 	/*font: normal 17px/1.5em "Helvetica Neue",Helvetica,Arial,sans-serif;*/
-	color: #aaa;
+	/*color: #aaa;*/
+	font-size: 16px;
+	font:italic;
 	max-width: 400px;
 	margin-top: 2px;
 }
@@ -250,6 +299,19 @@ h6 {
 	font-weight: bold;
 	color: #666;
 	margin-bottom: 6px;
+}
+
+#post-body p {
+	font-size: 80%;
+    line-height: 1.6em;
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    letter-spacing: 0.6px;
 }
 
 
@@ -371,23 +433,25 @@ Post List
 }
 
 #post-list a {
-	color: #333;
+	color: #222;
 	display: block;
-	font: bold 19px/1.7 "Helvetica Neue",helvetica,Arial,sans-serif;
+	font: bold 20px/1.7;
+	/* "Helvetica Neue",helvetica,Arial,sans-serif;*/
 }
 
 #post-list .dates {
 	float: right;
 	position: relative;
 	top: 1px;
-	font: 300 17px/1.8 "Helvetica Neue",helvetica,Arial,sans-serif;
-	color: #bbb;
+	font: 300 14px/1.8 "Helvetica Neue",helvetica,Arial,sans-serif;
+	color: #aaa;
 }
 
 #post-list-footer {
 	border-top: 1px solid #eee;
 	margin-top: 20px;
 	padding-top: 100px;
+	
 }
 
 #archive-link {
@@ -414,7 +478,9 @@ Post List
 #footer {
 	box-shadow: inset 0 1px 0 #eee;
 	padding: 40px 0 0 0;
+	
 	margin-top: 100px;
+	text-align: center;
 }
 
 /* Post Page */
@@ -627,3 +693,35 @@ h2.month {
 	.post h1 { font-size:24px; }
 	.post h2 { font-size:20px; }
 }
+
+#tag_cloud a {
+	
+	text-decoration: none;
+}
+
+.listing li {
+	list-style-type:none;
+}
+
+.listing-item a {
+	color: #222;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+}
+
+.listing-item time {
+	float: right;
+	position: relative;
+	top: 1px;
+	font: 300 14px/1.8 "Helvetica Neue",helvetica,Arial,sans-serif;
+	color: #aaa;
+}
+
+.listing-seperator {
+	font-size: 16px;
+	color: #bbb;
+} 
