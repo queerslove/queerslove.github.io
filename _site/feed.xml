@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>ayame9joe</title>
+    <description>playful thoughts</description>
+    <link>‘ayame9joe.github.io’</link>
+    <atom:link href="‘ayame9joe.github.io’/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Land Sliders分析</title>
+        
+        
+          <description>&lt;h2&gt;游戏机制&lt;/h2&gt;
+
+&lt;p&gt;Land Slider采取滑动与点击操作，以上两种操作分别能够使得游戏化身向反方向行进或者停止。说起来概念上并没有什么难以理解之处，并且符合移动平台一贯的特性，但真正操作起来却并不那么得心应手。个人对此的理解为设计人员的有意为之，想要以此达到“易于上手，难于精通”的目的；而且造成失败时玩家每每会产生“明明可以”，“再试一次”的执念。&lt;/p&gt;
+</description>
+        
+        <pubDate>Wed, 28 Oct 2015 00:00:00 +0800</pubDate>
+        <link>‘ayame9joe.github.io’/2015/landslider/</link>
+        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/landslider/</guid>
+      </item>
+    
+      <item>
+        <title>Welcome to Jekyll!</title>
+        
+        
+          <description>&lt;p&gt;You&amp;#39;ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory - edit this post and re-build (or run with the &lt;code&gt;-w&lt;/code&gt; switch) to see your changes!
+To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention: YYYY-MM-DD-name-of-post.ext.&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 10 Nov 2013 18:18:00 +0800</pubDate>
+        <link>‘ayame9joe.github.io’/2013/welcome-to-jekyll/</link>
+        <guid isPermaLink="true">‘ayame9joe.github.io’/2013/welcome-to-jekyll/</guid>
+      </item>
+    
+  </channel>
+</rss>

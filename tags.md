@@ -4,9 +4,13 @@ layout: default
 permalink: tags/
 ---
 
+
 <div id='tag_cloud'>
-{% for tag in site.tags %}
-<a href="#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">{{ tag[0] }}</a>
+{% assign tags = site.tags | sort %}
+{% for tag in tags %}
+ <span class="site-tag">
+	<a href="#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}" style="font-size: {{ tag | last | size  |  times: 4 | plus: 80  }}%">{{ tag[0] | replace:'-', ' ' }} ({{ tag | last | size }})</a>
+</span>
 {% endfor %}
 </div>
 
@@ -22,7 +26,7 @@ permalink: tags/
 {% endfor %}
 </ul>
 
-<script src="/assets/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/assets/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/assets/js/jquery.tagcloud.js" type="text/javascript" charset="utf-8"></script> 
 <script language="javascript">
 $.fn.tagcloud.defaults = {
