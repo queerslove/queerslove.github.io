@@ -1,6 +1,6 @@
 ---
 title: 404
-layout: page
+layout: default
 ---
 
 Nothing found :(

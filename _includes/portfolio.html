@@ -1,0 +1,22 @@
+<h1>{{ site.author }}</h1>
+<h2></h2>
+
+<div class="grid">
+	<ul class="project-list">
+		{% for project in site.data.project %}
+		<li class="project-item hvr-grow">
+			<figure class="effect-sadie">
+				<img src="{{ site.baseurl | append: '/assets/images/' | append: project.img }}" alt="">
+				<figcaption>
+					<div>
+						<h2>{{project.name}}</h2>
+						<p>{{project.description}}</p>
+					</div>
+					<a href="{{project.url}}">View more</a>
+				</figcaption>			
+			</figure>
+		</li>
+		{% endfor %}
+	</ul>
+			
+</div>
