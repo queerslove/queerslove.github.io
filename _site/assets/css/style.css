@@ -211,6 +211,10 @@ li	{ list-style-type:circle; list-style-position:inside; }
 
 ol li {
   list-style-type: decimal;
+  font-size: 80%;
+  line-height: 1.6em;
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
 }
 
 /* Line Height */
