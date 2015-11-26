@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Land Sliders分析
+title: 《Land Sliders》
 description: 从游戏机制、多目标、情感体验与社区营造进行分析。
 disqus: true
 tags: 游戏分析

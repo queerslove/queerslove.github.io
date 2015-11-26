@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Brothers：A Tale of Two Sons分析
+title: 《Brothers：A Tale of Two Sons》
 description: 类型化，情感体验（NPCs与兄弟羁绊），叙事结构
 disqus: true
 tags: 游戏分析
