@@ -406,7 +406,7 @@ thead th,th {
 }
 
 img {
-	width: 100%;
+
 	max-width: 100%;
 	border-radius: 3px;
 }
@@ -720,7 +720,6 @@ h2.month {
     line-height: 0.6em;
     margin-top: 0.3em;
     margin-bottom: 0.3em;
-    display: block;
     -webkit-margin-before: 1em;
     -webkit-margin-after: 1em;
     -webkit-margin-start: 0px;

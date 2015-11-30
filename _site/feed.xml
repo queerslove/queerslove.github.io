@@ -7,6 +7,18 @@
     <atom:link href="‘ayame9joe.github.io’/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Octodad</title>
+        
+        
+          <description>&lt;h2&gt;基于物理操作的轻喜剧冒险&lt;/h2&gt;
+</description>
+        
+        <pubDate>Mon, 30 Nov 2015 00:00:00 +0800</pubDate>
+        <link>‘ayame9joe.github.io’/2015/octodad/</link>
+        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/octodad/</guid>
+      </item>
+    
+      <item>
         <title>《惊梦》</title>
         
         
@@ -116,18 +128,6 @@
         <pubDate>Wed, 28 Oct 2015 00:00:00 +0800</pubDate>
         <link>‘ayame9joe.github.io’/2015/landslider/</link>
         <guid isPermaLink="true">‘ayame9joe.github.io’/2015/landslider/</guid>
-      </item>
-    
-      <item>
-        <title>我的读书历程</title>
-        
-        
-          <description>&lt;p&gt;碎片化阅读侵占了阅读时间，想要开始重新回归的时候忽然想到总结一下读书历程是值得去做的一件事。因为不能够去读书有时也是因为兴趣的丧失，而这兴趣的丧失除了与长期的抑郁有关，也与大抵读过了想读的书目相染。——虽然这所谓的“读过”也仅仅是读过而已。（当然，对于特别符合个人趣味的作者的烂熟于心不在此列。）不免想起村上春树所说“大部分是重读”。如果现在继续读书，所应做的也无非是查漏补缺；毕竟年纪已然如此，饥渴吞噬知识与文字的阶段似已过去，能够形成的趣味已经形成。（如果计划没有改变的话，后文之中应当会指出，近些年，反而是应用类的图书占据了所读书目的部分，并且带来了些许人生观的改变。）&lt;/p&gt;
-</description>
-        
-        <pubDate>Tue, 18 Aug 2015 00:00:00 +0800</pubDate>
-        <link>‘ayame9joe.github.io’/2015/reading-history/</link>
-        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/reading-history/</guid>
       </item>
     
   </channel>

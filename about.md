@@ -9,7 +9,7 @@ profile: true
 ***
 
 <div align=center>
-	<img src="{{ site.baseurl }}assets/images/weixin.png" width = "129" height = "129" alt="公共微信号" align=center />
+	<img src="{{ site.baseurl }}assets/images/weixin.png" width = "129" alt="公共微信号" align=center />
 </div>
 
 ***
