@@ -7,6 +7,30 @@
     <atom:link href="‘ayame9joe.github.io’/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>《惊梦》</title>
+        
+        
+          <description>&lt;p&gt;前段时间的两个来自网易的中国风小品级作品《花语月》与《惊梦》由于独具一格的创意与完全免费的情怀引起了巨大关注。我也能够不讳言地表达自己对于《惊梦》的喜爱。（与此相对，由于个人的口味问题，《花语月》则并不那么让我喜欢，其原因主要是游戏机制与其他内容的严重脱节。）括号之中的内容应该会引发争议，因为不少人认为在这一点上《惊梦》并不比《花语月》做得更好。因此，我想表达一些自己的思考。&lt;/p&gt;
+</description>
+        
+        <pubDate>Fri, 27 Nov 2015 00:00:00 +0800</pubDate>
+        <link>‘ayame9joe.github.io’/2015/jingmeng/</link>
+        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/jingmeng/</guid>
+      </item>
+    
+      <item>
+        <title>《她的故事》</title>
+        
+        
+          <description>&lt;p&gt;表面看上去，《她的故事》吸引人之处在于游戏形式，但这只是进入游戏的动机。真正的重复游戏动机来自于游戏内容：那个略带黑暗向的故事。关于这款游戏其实并没有太多可讲，这是因为，这并不只是一款游戏：碎片化叙事与拼接故事的方法在传统叙事之中早已被应用过。事实上，对于一切并非完全的线性叙事的作品，我们都需要在脑中进行排序并且加以理解，而《她的故事》所做的只是将这一过程显性化了而已。&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 26 Nov 2015 00:00:00 +0800</pubDate>
+        <link>‘ayame9joe.github.io’/2015/her-story/</link>
+        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/her-story/</guid>
+      </item>
+    
+      <item>
         <title>我坚持使用Wunderlist的原因</title>
         
         
@@ -57,7 +81,7 @@
       </item>
     
       <item>
-        <title>Brothers：A Tale of Two Sons分析</title>
+        <title>《Brothers：A Tale of Two Sons》</title>
         
         
           <description>&lt;h2&gt;游戏类型&lt;/h2&gt;
@@ -81,7 +105,7 @@
       </item>
     
       <item>
-        <title>Land Sliders分析</title>
+        <title>《Land Sliders》</title>
         
         
           <description>&lt;h2&gt;游戏机制&lt;/h2&gt;
@@ -95,16 +119,15 @@
       </item>
     
       <item>
-        <title>Welcome to Jekyll!</title>
+        <title>我的读书历程</title>
         
         
-          <description>&lt;p&gt;You&amp;#39;ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory - edit this post and re-build (or run with the &lt;code&gt;-w&lt;/code&gt; switch) to see your changes!
-To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention: YYYY-MM-DD-name-of-post.ext.&lt;/p&gt;
+          <description>&lt;p&gt;碎片化阅读侵占了阅读时间，想要开始重新回归的时候忽然想到总结一下读书历程是值得去做的一件事。因为不能够去读书有时也是因为兴趣的丧失，而这兴趣的丧失除了与长期的抑郁有关，也与大抵读过了想读的书目相染。——虽然这所谓的“读过”也仅仅是读过而已。（当然，对于特别符合个人趣味的作者的烂熟于心不在此列。）不免想起村上春树所说“大部分是重读”。如果现在继续读书，所应做的也无非是查漏补缺；毕竟年纪已然如此，饥渴吞噬知识与文字的阶段似已过去，能够形成的趣味已经形成。（如果计划没有改变的话，后文之中应当会指出，近些年，反而是应用类的图书占据了所读书目的部分，并且带来了些许人生观的改变。）&lt;/p&gt;
 </description>
         
-        <pubDate>Sun, 10 Nov 2013 18:18:00 +0800</pubDate>
-        <link>‘ayame9joe.github.io’/2013/welcome-to-jekyll/</link>
-        <guid isPermaLink="true">‘ayame9joe.github.io’/2013/welcome-to-jekyll/</guid>
+        <pubDate>Tue, 18 Aug 2015 00:00:00 +0800</pubDate>
+        <link>‘ayame9joe.github.io’/2015/reading-history/</link>
+        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/reading-history/</guid>
       </item>
     
   </channel>
