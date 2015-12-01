@@ -7,6 +7,17 @@
     <atom:link href="‘ayame9joe.github.io’/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Prune</title>
+        
+        
+          <description></description>
+        
+        <pubDate>Mon, 30 Nov 2015 00:00:00 +0800</pubDate>
+        <link>‘ayame9joe.github.io’/2015/prune/</link>
+        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/prune/</guid>
+      </item>
+    
+      <item>
         <title>Octodad</title>
         
         
@@ -114,20 +125,6 @@
         <pubDate>Sun, 01 Nov 2015 00:00:00 +0800</pubDate>
         <link>‘ayame9joe.github.io’/2015/mountains-may-depart/</link>
         <guid isPermaLink="true">‘ayame9joe.github.io’/2015/mountains-may-depart/</guid>
-      </item>
-    
-      <item>
-        <title>《Land Sliders》</title>
-        
-        
-          <description>&lt;h2&gt;游戏机制&lt;/h2&gt;
-
-&lt;p&gt;Land Slider采取滑动与点击操作，以上两种操作分别能够使得游戏化身向反方向行进或者停止。说起来概念上并没有什么难以理解之处，并且符合移动平台一贯的特性，但真正操作起来却并不那么得心应手。个人对此的理解为设计人员的有意为之，想要以此达到“易于上手，难于精通”的目的；而且造成失败时玩家每每会产生“明明可以”，“再试一次”的执念。&lt;/p&gt;
-</description>
-        
-        <pubDate>Wed, 28 Oct 2015 00:00:00 +0800</pubDate>
-        <link>‘ayame9joe.github.io’/2015/landslider/</link>
-        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/landslider/</guid>
       </item>
     
   </channel>

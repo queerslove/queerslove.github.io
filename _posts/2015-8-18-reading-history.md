@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 我的读书历程
+title: 我的阅读之路
 description: 一篇流水账
 disqus: true
 tags: 读书

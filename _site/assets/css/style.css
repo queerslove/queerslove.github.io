@@ -209,6 +209,16 @@ a,
 ul 	{ margin:0; padding:0; }
 li	{ list-style-type:circle; list-style-position:inside; }
 
+li.next {
+	list-style: none;
+	float:right;
+}
+
+li.previous {
+	list-style: none;
+	float:left;
+}
+
 ol li {
   list-style-type: decimal;
   font-size: 80%;
