@@ -10,6 +10,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 }
 .hidden { display: none; }
 
+div.PageNavigation {height: :1px;}
 
 /* Spacing */
 .post h1, h2, h3, h4, h5, p, .post-body ul, #post-list li, pre {
@@ -205,6 +206,10 @@ a,
 	-o-transition: all 0.15s ease;
 	transition: all 0.15s ease;
 }
+
+
+a.prev {float:left;}
+a.next {float: right;}
 
 ul 	{ margin:0; padding:0; }
 li	{ list-style-type:circle; list-style-position:inside; }
@@ -520,7 +525,7 @@ Post List
 	line-height: 1.4;
 	border-top: 1px solid #eee;
 	padding-top: 40px;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	padding-bottom: 40px;
 	margin-top: 40px;
 	color:#444;
