@@ -284,6 +284,7 @@ em, i { font-style: italic; }
 
 .post h2 {
 	margin-bottom: 20px;
+	bo
 	/*font: 300 24px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif;*/
 	/*color: #111;*/
 }
@@ -307,14 +308,14 @@ em, i { font-style: italic; }
 	/*font: normal 17px/1.5em "Helvetica Neue",Helvetica,Arial,sans-serif;*/
 	/*color: #aaa;*/
 	font-size: 16px;
-	font-weight:bold;
+	font:italic;
 	max-width: 400px;
 	margin-top: 2px;
 }
 
 h3, h4, h5 { color:#333; }
 
-h3 { font-size:20px; font-weight: bold; }
+h3 { font-size:20px; font-weight: 400; }
 h4 { font-size:16px; font-weight:bold; }
 h5 { font-size:15px; font-weight: bold; }
 
