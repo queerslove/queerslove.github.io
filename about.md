@@ -10,10 +10,10 @@ profile: true
 
 <div align=center>
 	<img src="{{ site.baseurl }}assets/images/weixin.png" width = "129" alt="公共微信号" align=center />
-</div>
+
 
 ***
-<div align=center>
+
 
 #### Site's stack:
 
@@ -22,4 +22,5 @@ Built with [Jekyll](http://jekyllrb.com/).
 <br>Based on the [Lonely](https://github.com/ayame9joe/ayame9joe.github.io) theme.
 <br>Feel free to [fork](https://github.com/ayame9joe/ayame9joe.github.io), change, modify and re-use it.
 {% include footer.html %}
-</div>
+
+

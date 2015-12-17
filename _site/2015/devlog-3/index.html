@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>ayame9joe - Devlog 3</title>
+  <link rel="shortcut icon" href="/assets/images/favicon.ico">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="alternate" type="application/rss+xml" title="My Blog" href="/rss.xml">
+  <link rel="stylesheet" href="/assets/css/pygments.css">
+</head>
+<body>
+
+  <nav class="main-nav">
+    
+        <a href="/"> <span class="arrow">←</span> Home </a>
+    
+
+    
+        
+            <a href="/about">About </a>
+        
+    
+
+    
+        <a href="/portfolio">Portfolio </a>
+    
+
+    
+    	<a href="/tags">Tags </a>
+    
+
+
+    <a class="cta" href="/feed.xml">Subscribe</a>
+</nav>
+
+  
+
+  <section id="wrapper" class="">
+    <article class="post">
+    <header>
+        <h1>Devlog 3</h1>
+        <h2 class="headline">December 13, 2015</h2>
+    </header>
+    <section id="post-body">
+        <h2>2015.12.13</h2>
+
+<p>在把玩RPG Maker（并且意识到它的强大，然而）无果之后，重新开始使用Unity制作原型。与以往不同的是，为了实现类似《纪念碑谷》等游戏的斜45度效果，采用了3D而非熟悉的2D。</p>
+
+<h3>完成的工作</h3>
+
+<ol>
+<li>将游戏视角调整为斜45度。</li>
+<li>角色移动控制。</li>
+</ol>
+
+<h4>将游戏视角调整为斜45度的方法</h4>
+
+<ol>
+<li>将Y轴旋转45度，X轴旋转30度（X轴控制高度，Y轴控制角度）。</li>
+<li>将Projection改为Orthographic。</li>
+<li>更改Size至合适大小。</li>
+</ol>
+
+<h4>角色移动控制</h4>
+
+<ol>
+<li>将地面层的layer与tag设置完毕。</li>
+<li>使用射线确定鼠标点击位置。</li>
+<li>使用LookAt函数，使角色转向目标位置。</li>
+<li>使用rigidbody进行移动。</li>
+</ol>
+
+<h4>射线确定鼠标点击位置的方法</h4>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> <span class="nv">m_layerMask</span> <span class="o">=</span> <span class="m">1</span> &lt;&lt; 8<span class="p">;</span>
+<span class="lineno">2</span> // 根据鼠标在屏幕空间的位置计算射线
+<span class="lineno">3</span> <span class="nv">m_ray</span> <span class="o">=</span> Camera.main.ScreenPointToRay<span class="o">(</span>Input.mousePosition<span class="o">)</span><span class="p">;</span>
+<span class="lineno">4</span> // 进行三维场景中的射线求交
+<span class="lineno">5</span> <span class="k">if</span> <span class="o">(</span>Physics.Raycast<span class="o">(</span>m_ray, out m_hitInfo, 100, m_layerMask<span class="o">))</span>
+<span class="lineno">6</span> <span class="o">{</span>          
+<span class="lineno">7</span>   //TODO:...
+<span class="lineno">8</span> <span class="o">}</span></code></pre></div>
+
+<h3>下一步</h3>
+
+<ol>
+<li>角色控制也许不使用rigidbody。</li>
+<li>增加可以呼唤女孩（暂名Windy）的位置，在那些位置上，玩家角色与之接触（或者按下某个键位）可以呼唤Windy，这样Windy就可以走到那里。</li>
+<li>Windy自动寻路。</li>
+<li>当Windy离开这些位置的时候，用于呼唤的魔石过一段时间之后会再度生长出来。</li>
+</ol>
+
+<h2>2015.12.14</h2>
+
+<p>接着昨天的内容继续开发。</p>
+
+<h3>完成的工作</h3>
+
+<ol>
+<li>呼唤Windy。</li>
+<li>自动寻路。</li>
+<li>当Windy离开这些位置的时候，用于呼唤的魔石过一段时间之后会再度生长出来。</li>
+<li>使用自动寻路或角色控制器（Character Controller）用鼠标控制玩家角色移动。</li>
+<li>使用rigidbody暂时代替的推箱子。</li>
+</ol>
+
+<h4>呼唤Windy与魔石生长</h4>
+
+<ol>
+<li>OnTriggerEnter()开启开关，并获得目标位置，记录Windy位置。</li>
+<li>Windy自动寻路。</li>
+<li>在Windy第二次离开目标位置之后，在Windy位置上生长魔石。</li>
+</ol>
+
+<h4>自动寻路</h4>
+
+<p>这是对我来说相对较新的知识点，原以为需要查找资料自造轮子或者使用插件，没想到Unity本身自带的Navigation就已经这样强大。</p>
+
+<ol>
+<li>为Windy绑定Nav Mesh Agent。</li>
+<li>选定墙壁、地板等不可穿越物件，选择Window - Navigation，勾选Nav Static，点击<strong>右下角</strong>Bake，生成Nav Mesh。</li>
+</ol>
+
+<p><img src="/assets/images/nav_mesh.png" alt="Nav Mesh" title="Nav Mesh"></p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> m_girl.GetComponent&lt;NavMeshAgent&gt;<span class="o">()</span>.destination <span class="o">=</span> target.transform.position<span class="p">;</span></code></pre></div>
+
+<h4>角色控制器</h4>
+
+<p>因为之前一直在做2D游戏，对于角色控制器没有过多关注；开始查找到的资料多为使用键盘控制角色移动。</p>
+
+<ol>
+<li>无需添加rigidbody。</li>
+<li>如果有重力，需要以isGrounded实现。</li>
+</ol>
+
+<p>使用<strong>鼠标</strong>移动角色如下：</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> Vector3 <span class="nv">tempMov</span> <span class="o">=</span> Vector3.ClampMagnitude<span class="o">(</span>m_targetPos - this.transform.position, speed<span class="o">)</span><span class="p">;</span>
+<span class="lineno">2</span> this.GetComponent&lt;CharacterController&gt;<span class="o">()</span>.Move<span class="o">(</span>tempMov<span class="o">)</span><span class="p">;</span></code></pre></div>
+
+<h3>2015.12.15</h3>
+
+<p>今天并没有完成很多工作，原因是一些设计上的问题再次冒出头来，对我说“你压根没有想清楚！”。的确，这次想要开始动手编码源自于LD34，但后来因为时间的缘故并没有拿出作品参赛，总之是兴致一来就开始的行动。真正把颅内剧场实现才发现许多事情根本和自己的想象不同。</p>
+
+<p>比如，今天用了一些时间考虑了一下是否应该使用“呼唤区域”这个概念，因为它似乎限制住了玩家的自由性。但是，如果玩家在任何时候都能够呼唤Windy的话，则会造成两个问题：</p>
+
+<ol>
+<li>需要增加一个按键进行呼唤操作（当然，这个问题可以通过其他方式解决）。</li>
+<li>对于Windy移动过于自由的掌控会使得Windy是<strong>另一个人</strong>这个概念大大弱化。移动方式只是鼠标点击移动的繁琐升级版。<strong>这个问题是设计这款游戏的时候一定要时时刻刻留意的。</strong></li>
+</ol>
+
+<p>于是我也意识到<strong>将之前的设计想法、思路做一个汇总</strong>的必要性。这个汇总将包括之后打算尝试的新的可能，并且会按照得出的结论进行数个版本的修订。</p>
+
+<p>这样做的好处有以下几点：</p>
+
+<ol>
+<li>避免一些不必要的重复性工作。</li>
+<li>一定程度地将程序、美术与设计的工作分离开来。这种分离对于独立开发者是必要的，因为脑中内讧损伤的必然还是自己。</li>
+<li>使得游戏开发的计划性更强。</li>
+</ol>
+
+<p>最后完成的关卡示例终于展示了这款游戏的玩点之一，但是我最希望看到的玩家对于Windy的保护还没有那么强烈地展现出来，并且现在的游戏项目也没有用到真正开发游戏时需要的核心技术。尽管如此，游戏可以如此迅速地进入到使用可玩原型进行关卡搭建的阶段还是让我感到有些开心。</p>
+
+<p>P.S.觅得一个制作gif的利器licecap。</p>
+
+<h4>完成的工作</h4>
+
+<ol>
+<li>齿轮关卡示例。</li>
+<li>粗糙的关卡选择功能。</li>
+</ol>
+
+<p><img src="/assets/images/GearLevelDemo.gif" alt="GearLevelDemo" title="GearLevelDemo"></p>
+
+    </section>
+</article>
+
+
+<footer id="post-meta" class="clearfix">
+    <a href="http://twitter.com/ayame9joe">
+        <img class="avatar" src="/assets/images/avatar.png">
+        <div>
+            <span class="dark">ayame9joe</span>
+            <span>playful thoughts</span>
+        </div>
+    </a>
+
+    <section id="sharing">
+        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://ayame9joe.github.com/2015/devlog-3/ - Devlog 3 by @ayame9joe"><span class="icon-twitter"> Tweet</span></a>
+
+<a class="facebook" href="#" onclick="
+    window.open(
+      'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href),
+      'facebook-share-dialog',
+      'width=626,height=436');
+    return false;"><span class="icon-facebook-rect"> Share</span>
+</a>
+    </section>
+</footer>
+
+<div class="PageNavigation">
+  
+    <a class="prev" href="/2015/devlog-2/">&laquo; Devlog 2</a>
+  
+  
+</div>
+
+
+
+<!-- Disqus comments -->
+
+    <div class="archive readmore">
+        <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//ayame9joe.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    </div>
+
+
+
+
+
+
+
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script src="/assets/js/highlight.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-45533098-2', 'auto');
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>
+
+
+
