@@ -45,26 +45,26 @@
         <h2 class="headline">December 13, 2015</h2>
     </header>
     <section id="post-body">
-        <h2>2015.12.13</h2>
+        <h2 id="2015-12-13">2015.12.13</h2>
 
 <p>在把玩RPG Maker（并且意识到它的强大，然而）无果之后，重新开始使用Unity制作原型。与以往不同的是，为了实现类似《纪念碑谷》等游戏的斜45度效果，采用了3D而非熟悉的2D。</p>
 
-<h3>完成的工作</h3>
+<h3 id="完成的工作">完成的工作</h3>
 
 <ol>
 <li>将游戏视角调整为斜45度。</li>
 <li>角色移动控制。</li>
 </ol>
 
-<h4>将游戏视角调整为斜45度的方法</h4>
+<h4 id="将游戏视角调整为斜45度的方法">将游戏视角调整为斜45度的方法</h4>
 
 <ol>
 <li>将Y轴旋转45度，X轴旋转30度（X轴控制高度，Y轴控制角度）。</li>
 <li>将Projection改为Orthographic。</li>
-<li>更改Size至合适大小。</li>
+<li>更改摄像机Size至合适大小。</li>
 </ol>
 
-<h4>角色移动控制</h4>
+<h4 id="角色移动控制">角色移动控制</h4>
 
 <ol>
 <li>将地面层的layer与tag设置完毕。</li>
@@ -73,18 +73,18 @@
 <li>使用rigidbody进行移动。</li>
 </ol>
 
-<h4>射线确定鼠标点击位置的方法</h4>
+<h4 id="射线确定鼠标点击位置的方法">射线确定鼠标点击位置的方法</h4>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> <span class="nv">m_layerMask</span> <span class="o">=</span> <span class="m">1</span> &lt;&lt; 8<span class="p">;</span>
-<span class="lineno">2</span> // 根据鼠标在屏幕空间的位置计算射线
-<span class="lineno">3</span> <span class="nv">m_ray</span> <span class="o">=</span> Camera.main.ScreenPointToRay<span class="o">(</span>Input.mousePosition<span class="o">)</span><span class="p">;</span>
-<span class="lineno">4</span> // 进行三维场景中的射线求交
-<span class="lineno">5</span> <span class="k">if</span> <span class="o">(</span>Physics.Raycast<span class="o">(</span>m_ray, out m_hitInfo, 100, m_layerMask<span class="o">))</span>
-<span class="lineno">6</span> <span class="o">{</span>          
-<span class="lineno">7</span>   //TODO:...
-<span class="lineno">8</span> <span class="o">}</span></code></pre></div>
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno">1</span> <span class="n">m_layerMask</span> <span class="p">=</span> <span class="m">1</span> <span class="p">&lt;&lt;</span> <span class="m">8</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="c1">// 根据鼠标在屏幕空间的位置计算射线</span>
+<span class="lineno">3</span> <span class="n">m_ray</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">ScreenPointToRay</span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="n">mousePosition</span><span class="p">);</span>
+<span class="lineno">4</span> <span class="c1">// 进行三维场景中的射线求交</span>
+<span class="lineno">5</span> <span class="k">if</span> <span class="p">(</span><span class="n">Physics</span><span class="p">.</span><span class="n">Raycast</span><span class="p">(</span><span class="n">m_ray</span><span class="p">,</span> <span class="k">out</span> <span class="n">m_hitInfo</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="n">m_layerMask</span><span class="p">))</span>
+<span class="lineno">6</span> <span class="p">{</span>          
+<span class="lineno">7</span>   <span class="c1">//TODO:...</span>
+<span class="lineno">8</span> <span class="p">}</span></code></pre></div>
 
-<h3>下一步</h3>
+<h3 id="下一步">下一步</h3>
 
 <ol>
 <li>角色控制也许不使用rigidbody。</li>
@@ -93,11 +93,11 @@
 <li>当Windy离开这些位置的时候，用于呼唤的魔石过一段时间之后会再度生长出来。</li>
 </ol>
 
-<h2>2015.12.14</h2>
+<h2 id="2015-12-14">2015.12.14</h2>
 
 <p>接着昨天的内容继续开发。</p>
 
-<h3>完成的工作</h3>
+<h3 id="完成的工作">完成的工作</h3>
 
 <ol>
 <li>呼唤Windy。</li>
@@ -107,7 +107,7 @@
 <li>使用rigidbody暂时代替的推箱子。</li>
 </ol>
 
-<h4>呼唤Windy与魔石生长</h4>
+<h4 id="呼唤windy与魔石生长">呼唤Windy与魔石生长</h4>
 
 <ol>
 <li>OnTriggerEnter()开启开关，并获得目标位置，记录Windy位置。</li>
@@ -115,7 +115,7 @@
 <li>在Windy第二次离开目标位置之后，在Windy位置上生长魔石。</li>
 </ol>
 
-<h4>自动寻路</h4>
+<h4 id="自动寻路">自动寻路</h4>
 
 <p>这是对我来说相对较新的知识点，原以为需要查找资料自造轮子或者使用插件，没想到Unity本身自带的Navigation就已经这样强大。</p>
 
@@ -126,9 +126,9 @@
 
 <p><img src="/assets/images/nav_mesh.png" alt="Nav Mesh" title="Nav Mesh"></p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> m_girl.GetComponent&lt;NavMeshAgent&gt;<span class="o">()</span>.destination <span class="o">=</span> target.transform.position<span class="p">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno">1</span> <span class="n">m_girl</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">NavMeshAgent</span><span class="p">&gt;().</span><span class="n">destination</span> <span class="p">=</span> <span class="n">target</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">;</span></code></pre></div>
 
-<h4>角色控制器</h4>
+<h4 id="角色控制器">角色控制器</h4>
 
 <p>因为之前一直在做2D游戏，对于角色控制器没有过多关注；开始查找到的资料多为使用键盘控制角色移动。</p>
 
@@ -139,10 +139,10 @@
 
 <p>使用<strong>鼠标</strong>移动角色如下：</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="lineno">1</span> Vector3 <span class="nv">tempMov</span> <span class="o">=</span> Vector3.ClampMagnitude<span class="o">(</span>m_targetPos - this.transform.position, speed<span class="o">)</span><span class="p">;</span>
-<span class="lineno">2</span> this.GetComponent&lt;CharacterController&gt;<span class="o">()</span>.Move<span class="o">(</span>tempMov<span class="o">)</span><span class="p">;</span></code></pre></div>
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno">1</span> <span class="n">Vector3</span> <span class="n">tempMov</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">ClampMagnitude</span><span class="p">(</span><span class="n">m_targetPos</span> <span class="p">-</span> <span class="k">this</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">speed</span><span class="p">);</span>
+<span class="lineno">2</span> <span class="k">this</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">CharacterController</span><span class="p">&gt;().</span><span class="n">Move</span><span class="p">(</span><span class="n">tempMov</span><span class="p">);</span></code></pre></div>
 
-<h3>2015.12.15</h3>
+<h3 id="2015-12-15">2015.12.15</h3>
 
 <p>今天并没有完成很多工作，原因是一些设计上的问题再次冒出头来，对我说“你压根没有想清楚！”。的确，这次想要开始动手编码源自于LD34，但后来因为时间的缘故并没有拿出作品参赛，总之是兴致一来就开始的行动。真正把颅内剧场实现才发现许多事情根本和自己的想象不同。</p>
 
@@ -167,7 +167,7 @@
 
 <p>P.S.觅得一个制作gif的利器licecap。</p>
 
-<h4>完成的工作</h4>
+<h4 id="完成的工作">完成的工作</h4>
 
 <ol>
 <li>齿轮关卡示例。</li>
@@ -176,6 +176,62 @@
 
 <p><img src="/assets/images/GearLevelDemo.gif" alt="GearLevelDemo" title="GearLevelDemo"></p>
 
+<h2 id="2015-12-17">2015.12.17</h2>
+
+<p>昨天停工一天，理了理<a href="http://ayame9joe.github.io/2015/GDD/">下一步要做的事情的头绪</a>，也去IndieAce取了取经。</p>
+
+<h3 id="完成的工作">完成的工作</h3>
+
+<ol>
+<li>为了制作开场动画而学习了几个与场景加载有关的函数，如<a href="http://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html">DontDestroyOnLoad()</a>（加载新的场景时不要销毁的物品，如各种Manager），<a href="http://docs.unity3d.com/ScriptReference/Application.LoadLevelAsync.html">LoadLevelAsync</a>等。暂时并不会用到。</li>
+<li>研究了如何实现类似<em>推箱子</em>功能，但因为这个功能与移动方式本身之间关联非常紧密（我尚且没有想到使用鼠标点击移动的方式下如何推动箱子，而且不想做成键盘控制移动因为与移动平台过于不搭调），所以打算暂时使用开关移动平台功能代替。</li>
+<li>于是制作了开关移动平台这一功能：当玩家移动到开关周围时，鼠标点击开关，平台移动。</li>
+</ol>
+
+<h4 id="开关移动平台实现">开关移动平台实现</h4>
+
+<ol>
+<li>开关与平台绑定。</li>
+</ol>
+
+<p>平台相关代码：</p>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno"> 1</span> <span class="k">public</span> <span class="k">enum</span> <span class="n">MovableType</span> <span class="p">{</span>
+<span class="lineno"> 2</span>  <span class="n">left</span><span class="p">,</span>
+<span class="lineno"> 3</span>  <span class="n">right</span><span class="p">,</span>
+<span class="lineno"> 4</span>  <span class="n">up</span><span class="p">,</span>
+<span class="lineno"> 5</span>  <span class="n">down</span><span class="p">,</span>
+<span class="lineno"> 6</span>  <span class="n">forward</span><span class="p">,</span>
+<span class="lineno"> 7</span>  <span class="n">back</span>
+<span class="lineno"> 8</span> <span class="p">}</span>
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span> <span class="k">public</span> <span class="n">MovableType</span> <span class="n">movableType</span><span class="p">;</span></code></pre></div>
+
+<p>开关相关代码：</p>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno">1</span> <span class="k">public</span> <span class="k">void</span> <span class="nf">SwitchOn</span> <span class="p">()</span> <span class="p">{</span>
+<span class="lineno">2</span>   <span class="k">switch</span> <span class="p">(</span><span class="n">Movable</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">MovableController</span><span class="p">&gt;</span> <span class="p">().</span><span class="n">movableType</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">3</span>   <span class="k">case</span> <span class="n">MovableController</span><span class="p">.</span><span class="n">MovableType</span><span class="p">.</span><span class="n">left</span><span class="p">:</span>
+<span class="lineno">4</span>       <span class="k">break</span><span class="p">;</span>
+<span class="lineno">5</span>   <span class="c1">//...  </span>
+<span class="lineno">6</span>   <span class="p">}</span>
+<span class="lineno">7</span> <span class="p">}</span></code></pre></div>
+
+<h4 id="动态寻路实现">动态寻路实现</h4>
+
+<ol>
+<li>选中地面，勾选Nav Static，烘焙Nav Mesh。</li>
+<li>为平台添加NavMeshObstable组件。</li>
+<li>勾选Carve选框。</li>
+</ol>
+<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/* hello world demo */</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello, World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
     </section>
 </article>
 
@@ -206,6 +262,8 @@
   
     <a class="prev" href="/2015/devlog-2/">&laquo; Devlog 2</a>
   
+  
+    <a class="next" href="/2015/GDD/">Gdd &raquo;</a>
   
 </div>
 

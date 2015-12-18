@@ -7,10 +7,22 @@
     <atom:link href="‘ayame9joe.github.io’/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Gdd</title>
+        
+        
+          <description>&lt;h2 id=&quot;关卡设计与制作&quot;&gt;关卡设计与制作&lt;/h2&gt;
+</description>
+        
+        <pubDate>Wed, 16 Dec 2015 00:00:00 +0800</pubDate>
+        <link>‘ayame9joe.github.io’/2015/GDD/</link>
+        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/GDD/</guid>
+      </item>
+    
+      <item>
         <title>Devlog 3</title>
         
         
-          <description>&lt;h2&gt;2015.12.13&lt;/h2&gt;
+          <description>&lt;h2 id=&quot;2015-12-13&quot;&gt;2015.12.13&lt;/h2&gt;
 </description>
         
         <pubDate>Sun, 13 Dec 2015 00:00:00 +0800</pubDate>
@@ -57,7 +69,7 @@
         <title>Octodad</title>
         
         
-          <description>&lt;h2&gt;基于物理操作的轻喜剧冒险&lt;/h2&gt;
+          <description>&lt;h2 id=&quot;基于物理操作的轻喜剧冒险&quot;&gt;基于物理操作的轻喜剧冒险&lt;/h2&gt;
 </description>
         
         <pubDate>Mon, 30 Nov 2015 00:00:00 +0800</pubDate>
@@ -111,20 +123,6 @@
         <pubDate>Tue, 24 Nov 2015 00:00:00 +0800</pubDate>
         <link>‘ayame9joe.github.io’/2015/lifeline/</link>
         <guid isPermaLink="true">‘ayame9joe.github.io’/2015/lifeline/</guid>
-      </item>
-    
-      <item>
-        <title>关卡背后的秘密：关卡设计流程与心得分享</title>
-        
-        
-          <description>&lt;h2&gt;历史与概念&lt;/h2&gt;
-
-&lt;p&gt;视频游戏社群自1992年id Software的《重返德军总部3D》发行之后变得不同。超过25万玩家从BBS上下载了这个不到700KB的游戏。由此，第一视角射击游戏类型诞生。这个变化首先带来的就是游戏关卡设计这一概念与关卡设计师这一职业。因此，严格地说，在FPS出现之前，并不存在单独划分出来的关卡设计概念。然而，在此前的2D游戏之中当然也有关卡存在，之所以没有被单独划分出来，是因为其复杂度并没有扩大到一定规模。此处的复杂度可以从方位感、人工智能与艺术风格加以理解。时至今日，关卡设计已经演化成了一个十分宽泛的概念，它可能包括军事游戏之中的任务设计，飞行模拟游戏之中的空中敌人安排，角色扮演游戏之中的地牢设计，解谜游戏之中的谜题，或者一个上帝视角游戏之中的地图。&lt;/p&gt;
-</description>
-        
-        <pubDate>Tue, 17 Nov 2015 00:00:00 +0800</pubDate>
-        <link>‘ayame9joe.github.io’/2015/game-level-design/</link>
-        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/game-level-design/</guid>
       </item>
     
   </channel>
