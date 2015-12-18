@@ -1,4 +1,11 @@
-《GHOST TRICK》：叙事与冒险
+---
+
+layout: post
+title: 《GHOST TRICK》
+description: 叙事与冒险
+disqus: true
+tags: 游戏分析
+---
 ##游戏资料
 
 
@@ -41,3 +48,6 @@ Ghost Trick 2010.6 Capcom NDS AVG
 有一些情态设计已经在叙事方式中谈到过。事实上，有趣的情态设计为游戏增色不少。举例来说，冒险游戏理所当然的提示系统被人物对话代替，而玩家可以任意选择查看与否。又如可重复返回前4分钟，使重复解决困难的谜题得到了合理的解释。
 
 《Ghost Trick》在叙事与冒险之间进行了自己的尝试，虽然并不完全成功。可以认为，它并不是极为出色的游戏，但不能够说，游戏时的体验不出色。
+
+---
+**版权声明：自由转载-非商用-非衍生-保持署名（[创意共享3.0许可证](https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh)）**

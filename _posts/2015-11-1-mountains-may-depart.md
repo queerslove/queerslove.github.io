@@ -1,5 +1,4 @@
 ---
-
 layout: post
 title: 从游戏角度看《山河故人》
 description: 剧透慎入
