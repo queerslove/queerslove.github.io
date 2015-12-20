@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>ayame9joe - 《Windy（暂定）》Week0</title>
+  <title>ayame9joe - 《Windy》Week0</title>
   <link rel="shortcut icon" href="/assets/images/favicon.ico">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="alternate" type="application/rss+xml" title="My Blog" href="/rss.xml">
@@ -41,9 +41,10 @@
   <section id="wrapper" class="">
     <article class="post">
     <header>
-        <h1>《Windy（暂定）》Week0</h1>
+        <h1>《Windy》Week0</h1>
         <h2 class="headline">December 9, 2015</h2>
-
+        <div id="toc"></div>
+        
     </header>
     <section id="post-body">
         
@@ -69,11 +70,18 @@
 
 <p>在叙事上，游戏将尽量做成具有导演手法；详见我对《纪念碑谷》的评述。</p>
 
+<p>目前希望做的美术风格是矢量绘图的斜45度风或者低模风。可以参考《纪念碑谷》或者《劳拉go》。</p>
+
+<p>进行了一些简单的关卡设计。</p>
+
 <hr>
 
 <p><strong>版权声明：自由转载-非商用-非衍生-保持署名（<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">创意共享3.0许可证</a>）</strong></p>
 
     </section>
+
+
+
 </article>
 
 
@@ -87,7 +95,7 @@
     </a>
 
     <section id="sharing">
-        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://ayame9joe.github.com/2015/devlog-1/ - 《Windy（暂定）》Week0 by @ayame9joe"><span class="icon-twitter"> Tweet</span></a>
+        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://ayame9joe.github.com/2015/devlog-1/ - 《Windy》Week0 by @ayame9joe"><span class="icon-twitter"> Tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
@@ -104,7 +112,7 @@
     <a class="prev" href="/2015/prune/">&laquo; 《Prune》</a>
   
   
-    <a class="next" href="/2015/devlog-2/">《Windy（暂定）》Week0.5 &raquo;</a>
+    <a class="next" href="/2015/devlog-2/">《Windy》Week1 &raquo;</a>
   
 </div>
 
@@ -148,6 +156,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/highlight.js"></script>
+  <script src="/assets/js/toc.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
   <script>
@@ -158,6 +167,12 @@
 
     ga('create', 'UA-45533098-2', 'auto');
     ga('send', 'pageview');
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('#toc').toc();
+    });
   </script>
 </body>
 </html>

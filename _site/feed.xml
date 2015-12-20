@@ -7,7 +7,48 @@
     <atom:link href="‘ayame9joe.github.io’/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
-        <title>《Windy（暂定）》任务看板</title>
+        <title>Unity的Git管理</title>
+        
+        
+          <description>&lt;p&gt;由于最开始只是想要做一些小的实验，因此并没有将版本控制摆上台面；今天想到Git管理，却因为不明原因将整个项目删除。挽救工作不但没有成功却将残余的代码也一并清扫而空。（至今未明原因。）算是蛮惨痛的教训。&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 20 Dec 2015 00:00:00 +0800</pubDate>
+        <link>‘ayame9joe.github.io’/2015/unity-git/</link>
+        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/unity-git/</guid>
+      </item>
+    
+      <item>
+        <title>ToC in Jekyll</title>
+        
+        
+          <description>&lt;ol&gt;
+&lt;li&gt;下载&lt;a href=&quot;https://github.com/ghiculescu/jekyll-table-of-contents&quot;&gt;JS插件ToC&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;模板引用。&lt;/li&gt;
+&lt;li&gt;需要处加入&lt;code class=&quot;prettyprint&quot;&gt;&amp;lt;div id=&amp;quot;toc&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;在&lt;code class=&quot;prettyprint&quot;&gt;&amp;lt;\body&amp;gt;&lt;/code&gt;前加入如下代码。&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        
+        <pubDate>Sun, 20 Dec 2015 00:00:00 +0800</pubDate>
+        <link>‘ayame9joe.github.io’/2015/jekyll-toc/</link>
+        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/jekyll-toc/</guid>
+      </item>
+    
+      <item>
+        <title>Jekyll的Markdown解析</title>
+        
+        
+          <description>&lt;p&gt;使用redcarpet作为解析工具。&lt;/p&gt;
+</description>
+        
+        <pubDate>Sun, 20 Dec 2015 00:00:00 +0800</pubDate>
+        <link>‘ayame9joe.github.io’/2015/jekyll-redcarpet/</link>
+        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/jekyll-redcarpet/</guid>
+      </item>
+    
+      <item>
+        <title>《Windy》任务看板</title>
         
         
           <description>&lt;h2 id=&quot;关卡设计与制作&quot;&gt;关卡设计与制作&lt;/h2&gt;
@@ -19,31 +60,19 @@
       </item>
     
       <item>
-        <title>W项目Week1</title>
+        <title>《Windy》Week1</title>
         
         
           <description>&lt;h2 id=&quot;2015-12-13&quot;&gt;2015.12.13&lt;/h2&gt;
 </description>
         
         <pubDate>Sun, 13 Dec 2015 00:00:00 +0800</pubDate>
-        <link>‘ayame9joe.github.io’/2015/devlog-3/</link>
-        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/devlog-3/</guid>
-      </item>
-    
-      <item>
-        <title>《Windy（暂定）》Week0.5</title>
-        
-        
-          <description>&lt;p&gt;目前希望做的美术风格是矢量绘图的斜45度风或者低模风。可以参考《纪念碑谷》或者《劳拉go》。&lt;/p&gt;
-</description>
-        
-        <pubDate>Thu, 10 Dec 2015 00:00:00 +0800</pubDate>
         <link>‘ayame9joe.github.io’/2015/devlog-2/</link>
         <guid isPermaLink="true">‘ayame9joe.github.io’/2015/devlog-2/</guid>
       </item>
     
       <item>
-        <title>《Windy（暂定）》Week0</title>
+        <title>《Windy》Week0</title>
         
         
           <description>&lt;p&gt;如何以风之骑士的姿态保护女孩的旅程，如果你只能一定程度地影响游戏之中的环境。你只是风。&lt;/p&gt;
@@ -100,30 +129,6 @@
         <pubDate>Thu, 26 Nov 2015 00:00:00 +0800</pubDate>
         <link>‘ayame9joe.github.io’/2015/her-story/</link>
         <guid isPermaLink="true">‘ayame9joe.github.io’/2015/her-story/</guid>
-      </item>
-    
-      <item>
-        <title>我坚持使用Wunderlist的原因</title>
-        
-        
-          <description>&lt;p&gt;从2013年接触到GTD至今已经有两年时间，期间试用的工具不计其数。重点使用过的工具有doit，印象笔记与todoist。尽管每次都声势浩大，但却最终落得人仰马翻的境地。我已经记不清自己多少次删号重练。一方面是因为我的强迫症，另一方面，&lt;strong&gt;方法虽然没有问题，但是，总有什么地方不对，这种“不对”使得效率不进反退，工具与方法都成了负担而非助力&lt;/strong&gt;。到了ticktick的时候似乎已经毫无悬念。GTD工具就是如此，它们的相像让我感到并没有更换工具，而况我也没有一厢情愿地认为都是工具的问题。我喜爱这些工具的设计，但它们却没有满足我对于效率的追求。我自暴自弃地想，只有神器omnifocus才能解决我的问题。但彼时我还没有mac，使用过一段时间iphone版本之后果然清晰不少，但毕竟只有手机版本并不方便，于是更换手机之后再没有勇气接着用下去。&lt;/p&gt;
-</description>
-        
-        <pubDate>Wed, 25 Nov 2015 00:00:00 +0800</pubDate>
-        <link>‘ayame9joe.github.io’/2015/wunderlist/</link>
-        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/wunderlist/</guid>
-      </item>
-    
-      <item>
-        <title>再谈《生命线》：机制，内容及其他</title>
-        
-        
-          <description>&lt;p&gt;有关《生命线》的话题已经谈了不少。有人认为它与过往的文字冒险游戏并没有实质的差别，也有人认为这是一款小品级别的神作。本文不准备回答这个问题，而是梳理一下这款作品自身的特质。&lt;/p&gt;
-</description>
-        
-        <pubDate>Tue, 24 Nov 2015 00:00:00 +0800</pubDate>
-        <link>‘ayame9joe.github.io’/2015/lifeline/</link>
-        <guid isPermaLink="true">‘ayame9joe.github.io’/2015/lifeline/</guid>
       </item>
     
   </channel>

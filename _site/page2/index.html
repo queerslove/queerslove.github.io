@@ -56,6 +56,16 @@
     <ul id="post-list">
     
         <li>
+            <a href="/2012/steampunk/"><aside class="dates">Oct 06</aside></a>
+            <a href="/2012/steampunk/">蒸汽朋克与游戏 <h2>游戏中的蒸汽朋克关键词</h2></a>
+        </li>
+    
+        <li>
+            <a href="/2012/game-difficulty/"><aside class="dates">Sep 06</aside></a>
+            <a href="/2012/game-difficulty/">游戏难度初探 <h2>一系列不必要的挑战与障碍</h2></a>
+        </li>
+    
+        <li>
             <a href="/2012/creativity/"><aside class="dates">Aug 06</aside></a>
             <a href="/2012/creativity/">Creativity <h2></h2></a>
         </li>
@@ -145,16 +155,6 @@
             <a href="/2011/rpg-battle-system/">角色扮演游戏设计杂谈之② <h2>战斗系统至上的必然</h2></a>
         </li>
     
-        <li>
-            <a href="/2011/rpg-game-pleasure/"><aside class="dates">Jul 15</aside></a>
-            <a href="/2011/rpg-game-pleasure/">角色扮演游戏设计杂谈之① <h2>丰富的游戏乐趣？</h2></a>
-        </li>
-    
-        <li>
-            <a href="/2011/golden-sun/"><aside class="dates">Jul 14</aside></a>
-            <a href="/2011/golden-sun/">浅论《黄金的太阳：漆黑的黎明》系统改进 <h2>精灵与精神力的失衡</h2></a>
-        </li>
-    
 </ul>
 
 
@@ -186,6 +186,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/highlight.js"></script>
+  <script src="/assets/js/toc.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
   <script>
@@ -196,6 +197,12 @@
 
     ga('create', 'UA-45533098-2', 'auto');
     ga('send', 'pageview');
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('#toc').toc();
+    });
   </script>
 </body>
 </html>

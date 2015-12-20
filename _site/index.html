@@ -54,23 +54,33 @@
     <ul id="post-list">
     
         <li>
+            <a href="/2015/unity-git/"><aside class="dates">Dec 20</aside></a>
+            <a href="/2015/unity-git/">Unity的Git管理 <h2>版本控制的重要性</h2></a>
+        </li>
+    
+        <li>
+            <a href="/2015/jekyll-toc/"><aside class="dates">Dec 20</aside></a>
+            <a href="/2015/jekyll-toc/">ToC in Jekyll <h2>toc.js实现</h2></a>
+        </li>
+    
+        <li>
+            <a href="/2015/jekyll-redcarpet/"><aside class="dates">Dec 20</aside></a>
+            <a href="/2015/jekyll-redcarpet/">Jekyll的Markdown解析 <h2>redcarpet设置及其他</h2></a>
+        </li>
+    
+        <li>
             <a href="/2015/GDD/"><aside class="dates">Dec 16</aside></a>
-            <a href="/2015/GDD/">《Windy（暂定）》任务看板 <h2>路漫漫……</h2></a>
+            <a href="/2015/GDD/">《Windy》任务看板 <h2>路漫漫……</h2></a>
         </li>
     
         <li>
-            <a href="/2015/devlog-3/"><aside class="dates">Dec 13</aside></a>
-            <a href="/2015/devlog-3/">W项目Week1 <h2>上路。</h2></a>
-        </li>
-    
-        <li>
-            <a href="/2015/devlog-2/"><aside class="dates">Dec 10</aside></a>
-            <a href="/2015/devlog-2/">《Windy（暂定）》Week0.5 <h2>一点进展。</h2></a>
+            <a href="/2015/devlog-2/"><aside class="dates">Dec 13</aside></a>
+            <a href="/2015/devlog-2/">《Windy》Week1 <h2>上路。</h2></a>
         </li>
     
         <li>
             <a href="/2015/devlog-1/"><aside class="dates">Dec 09</aside></a>
-            <a href="/2015/devlog-1/">《Windy（暂定）》Week0 <h2>项目概述</h2></a>
+            <a href="/2015/devlog-1/">《Windy》Week0 <h2>项目概述</h2></a>
         </li>
     
         <li>
@@ -143,16 +153,6 @@
             <a href="/2014/fez/">《Fez》 <h2>核心游戏性的加法式设计</h2></a>
         </li>
     
-        <li>
-            <a href="/2012/steampunk/"><aside class="dates">Oct 06</aside></a>
-            <a href="/2012/steampunk/">争气朋克与游戏 <h2>游戏中的蒸汽朋克关键词</h2></a>
-        </li>
-    
-        <li>
-            <a href="/2012/game-difficulty/"><aside class="dates">Sep 06</aside></a>
-            <a href="/2012/game-difficulty/">游戏难度初探 <h2>一系列不必要的挑战与障碍</h2></a>
-        </li>
-    
 </ul>
 
 
@@ -176,6 +176,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/highlight.js"></script>
+  <script src="/assets/js/toc.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
   <script>
@@ -186,6 +187,12 @@
 
     ga('create', 'UA-45533098-2', 'auto');
     ga('send', 'pageview');
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('#toc').toc();
+    });
   </script>
 </body>
 </html>

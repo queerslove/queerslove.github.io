@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>ayame9joe - 《Windy（暂定）》任务看板</title>
+  <title>ayame9joe - 《Windy》任务看板</title>
   <link rel="shortcut icon" href="/assets/images/favicon.ico">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="alternate" type="application/rss+xml" title="My Blog" href="/rss.xml">
@@ -41,9 +41,10 @@
   <section id="wrapper" class="">
     <article class="post">
     <header>
-        <h1>《Windy（暂定）》任务看板</h1>
+        <h1>《Windy》任务看板</h1>
         <h2 class="headline">December 16, 2015</h2>
-
+        <div id="toc"></div>
+        
     </header>
     <section id="post-body">
         
@@ -51,14 +52,10 @@
 
 <p><em>首要任务：在尽可能短的时间内（2015.12.20之前）做出具有多样性的关卡。</em></p>
 
-<ol>
+<ul>
 <li><del>开篇</del>；</li>
 <li>风吹过之后得到故事碎片，但不能吸引女孩直接走过去；</li>
-<li>风可以过去，但是女孩不能过去，之后风为女孩铺路（功能实现，关卡尚未搭建）<a href="jlfjlaf"><sup>1</sup></a></li>
-</ol>
-<div class="highlight"><pre><code class="language-c++" data-lang="c++"><span class="mf">2015.12.20</span>
-</code></pre></div>
-<ul>
+<li><del>风可以过去，但是女孩不能过去，之后风为女孩铺路</del>（关卡尚未搭建）</li>
 <li>吹开平台，将敌人留在上面（上述内容的另一种应用）<code class="prettyprint">2015.12.20</code>；</li>
 <li>抵挡陷阱等；</li>
 <li>通过吹动改变敌人的旋转角度<code class="prettyprint">2015.12.20</code>；</li>
@@ -74,14 +71,6 @@
 <li>动态关卡；</li>
 <li>回归到感性层面设计关卡。</li>
 </ol>
-
-<p>2<sup>nd</sup>nd</p>
-
-<p><em>jkal</em></p>
-
-<p><q>fjala<q></p>
-
-<p>-jla-</p>
 
 <h2 id="游戏参考与头脑风暴">游戏参考与头脑风暴</h2>
 
@@ -152,6 +141,9 @@
 <p><strong>版权声明：自由转载-非商用-非衍生-保持署名（<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">创意共享3.0许可证</a>）</strong></p>
 
     </section>
+
+
+
 </article>
 
 
@@ -165,7 +157,7 @@
     </a>
 
     <section id="sharing">
-        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://ayame9joe.github.com/2015/GDD/ - 《Windy（暂定）》任务看板 by @ayame9joe"><span class="icon-twitter"> Tweet</span></a>
+        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://ayame9joe.github.com/2015/GDD/ - 《Windy》任务看板 by @ayame9joe"><span class="icon-twitter"> Tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
@@ -179,8 +171,10 @@
 
 <div class="PageNavigation">
   
-    <a class="prev" href="/2015/devlog-3/">&laquo; W项目Week1</a>
+    <a class="prev" href="/2015/devlog-2/">&laquo; 《Windy》Week1</a>
   
+  
+    <a class="next" href="/2015/jekyll-redcarpet/">Jekyll的Markdown解析 &raquo;</a>
   
 </div>
 
@@ -224,6 +218,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/highlight.js"></script>
+  <script src="/assets/js/toc.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
   <script>
@@ -234,6 +229,12 @@
 
     ga('create', 'UA-45533098-2', 'auto');
     ga('send', 'pageview');
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('#toc').toc();
+    });
   </script>
 </body>
 </html>

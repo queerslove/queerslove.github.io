@@ -419,7 +419,7 @@ thead th,th {
 	text-align: left;
 	padding: 10px 15px;
 	height: 20px;
-	font-size: 13px;
+	font-size: 16px;
 	font-weight: bold;
 	color: #444;
 	border-bottom: 1px solid #dadadc;
@@ -907,4 +907,62 @@ figure.effect-sadie:hover p {
 .grid figure p {
 	letter-spacing: 1px;
 	font-size: 68.5%;
+}
+
+.prettyprint {
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+    white-space: normal;
+    font-family: "Source Code Pro",monospace;
+    font-size: .9em;
+    padding: 2px 4px;    
+    box-sizing: border-box;
+    line-height: 1.6;
+    outline: none !important;
+}
+
+table {
+	font-size: 
+	line-height: 1.6;
+    margin-bottom: 20px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+table {
+    max-width: 100%;
+    background-color: transparent;
+}
+* {
+    outline: none !important;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+thead {
+	font-size: 140%
+}
+
+table {
+	font-size: 16px;
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+
+
+
+#toc ol li{
+	list-style-type: none;
 }

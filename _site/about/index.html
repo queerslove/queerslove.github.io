@@ -74,6 +74,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/highlight.js"></script>
+  <script src="/assets/js/toc.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
   <script>
@@ -84,6 +85,12 @@
 
     ga('create', 'UA-45533098-2', 'auto');
     ga('send', 'pageview');
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('#toc').toc();
+    });
   </script>
 </body>
 </html>

@@ -49,11 +49,23 @@
 </span>
 
  <span class="site-tag">
+    <a href="#Git" title="Git" rel="1" style="font-size: 84%">Git (1)</a>
+</span>
+
+ <span class="site-tag">
+    <a href="#Jekyll" title="Jekyll" rel="2" style="font-size: 88%">Jekyll (2)</a>
+</span>
+
+ <span class="site-tag">
+    <a href="#Unity," title="Unity," rel="1" style="font-size: 84%">Unity, (1)</a>
+</span>
+
+ <span class="site-tag">
     <a href="#专题" title="专题" rel="1" style="font-size: 84%">专题 (1)</a>
 </span>
 
  <span class="site-tag">
-    <a href="#开发日志" title="开发日志" rel="4" style="font-size: 96%">开发日志 (4)</a>
+    <a href="#开发日志" title="开发日志" rel="3" style="font-size: 92%">开发日志 (3)</a>
 </span>
 
  <span class="site-tag">
@@ -191,7 +203,7 @@
 
   <li class="listing-item">
   <time datetime="2012-10-06">2012 Oct 06</time>
-  <a href="/2012/steampunk/" title="争气朋克与游戏">争气朋克与游戏</a>
+  <a href="/2012/steampunk/" title="蒸汽朋克与游戏">蒸汽朋克与游戏</a>
   </li>
 
 
@@ -257,22 +269,46 @@
 
   <li class="listing-item">
   <time datetime="2015-12-16">2015 Dec 16</time>
-  <a href="/2015/GDD/" title="《Windy（暂定）》任务看板">《Windy（暂定）》任务看板</a>
+  <a href="/2015/GDD/" title="《Windy》任务看板">《Windy》任务看板</a>
   </li>
 
   <li class="listing-item">
   <time datetime="2015-12-13">2015 Dec 13</time>
-  <a href="/2015/devlog-3/" title="W项目Week1">W项目Week1</a>
-  </li>
-
-  <li class="listing-item">
-  <time datetime="2015-12-10">2015 Dec 10</time>
-  <a href="/2015/devlog-2/" title="《Windy（暂定）》Week0.5">《Windy（暂定）》Week0.5</a>
+  <a href="/2015/devlog-2/" title="《Windy》Week1">《Windy》Week1</a>
   </li>
 
   <li class="listing-item">
   <time datetime="2015-12-09">2015 Dec 09</time>
-  <a href="/2015/devlog-1/" title="《Windy（暂定）》Week0">《Windy（暂定）》Week0</a>
+  <a href="/2015/devlog-1/" title="《Windy》Week0">《Windy》Week0</a>
+  </li>
+
+
+  <li class="listing-seperator" id="Jekyll">Jekyll</li>
+
+  <li class="listing-item">
+  <time datetime="2015-12-20">2015 Dec 20</time>
+  <a href="/2015/jekyll-toc/" title="ToC in Jekyll">ToC in Jekyll</a>
+  </li>
+
+  <li class="listing-item">
+  <time datetime="2015-12-20">2015 Dec 20</time>
+  <a href="/2015/jekyll-redcarpet/" title="Jekyll的Markdown解析">Jekyll的Markdown解析</a>
+  </li>
+
+
+  <li class="listing-seperator" id="Unity,">Unity,</li>
+
+  <li class="listing-item">
+  <time datetime="2015-12-20">2015 Dec 20</time>
+  <a href="/2015/unity-git/" title="Unity的Git管理">Unity的Git管理</a>
+  </li>
+
+
+  <li class="listing-seperator" id="Git">Git</li>
+
+  <li class="listing-item">
+  <time datetime="2015-12-20">2015 Dec 20</time>
+  <a href="/2015/unity-git/" title="Unity的Git管理">Unity的Git管理</a>
   </li>
 
 
@@ -298,6 +334,7 @@ $(function () {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/highlight.js"></script>
+  <script src="/assets/js/toc.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
   <script>
@@ -308,6 +345,12 @@ $(function () {
 
     ga('create', 'UA-45533098-2', 'auto');
     ga('send', 'pageview');
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('#toc').toc();
+    });
   </script>
 </body>
 </html>

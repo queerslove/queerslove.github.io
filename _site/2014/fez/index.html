@@ -43,7 +43,8 @@
     <header>
         <h1>《Fez》</h1>
         <h2 class="headline">February 27, 2014</h2>
-
+        <div id="toc"></div>
+        
     </header>
     <section id="post-body">
         
@@ -116,6 +117,9 @@
 <p><strong>版权声明：自由转载-非商用-非衍生-保持署名（<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">创意共享3.0许可证</a>）</strong></p>
 
     </section>
+
+
+
 </article>
 
 
@@ -143,7 +147,7 @@
 
 <div class="PageNavigation">
   
-    <a class="prev" href="/2012/steampunk/">&laquo; 争气朋克与游戏</a>
+    <a class="prev" href="/2012/steampunk/">&laquo; 蒸汽朋克与游戏</a>
   
   
     <a class="next" href="/2014/monument-valley/">《纪念碑谷》 &raquo;</a>
@@ -190,6 +194,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/highlight.js"></script>
+  <script src="/assets/js/toc.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
   <script>
@@ -200,6 +205,12 @@
 
     ga('create', 'UA-45533098-2', 'auto');
     ga('send', 'pageview');
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('#toc').toc();
+    });
   </script>
 </body>
 </html>

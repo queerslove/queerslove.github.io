@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>ayame9joe - 《Windy（暂定）》Week0.5</title>
+  <title>ayame9joe - 《Windy》Week1</title>
   <link rel="shortcut icon" href="/assets/images/favicon.ico">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="alternate" type="application/rss+xml" title="My Blog" href="/rss.xml">
@@ -41,21 +41,245 @@
   <section id="wrapper" class="">
     <article class="post">
     <header>
-        <h1>《Windy（暂定）》Week0.5</h1>
-        <h2 class="headline">December 10, 2015</h2>
-
+        <h1>《Windy》Week1</h1>
+        <h2 class="headline">December 13, 2015</h2>
+        <div id="toc"></div>
+        
     </header>
     <section id="post-body">
         
-        <p>目前希望做的美术风格是矢量绘图的斜45度风或者低模风。可以参考《纪念碑谷》或者《劳拉go》。</p>
+        <h2 id="2015-12-13">2015.12.13</h2>
 
-<p>进行了一些简单的关卡设计。</p>
+<p>在把玩RPG Maker（并且意识到它的强大，然而）无果之后，重新开始使用Unity制作原型。与以往不同的是，为了实现类似《纪念碑谷》等游戏的斜45度效果，采用了3D而非熟悉的2D。</p>
+
+<h3 id="完成的工作">完成的工作</h3>
+
+<ol>
+<li>将游戏视角调整为斜45度。</li>
+<li>角色移动控制。</li>
+</ol>
+
+<h4 id="将游戏视角调整为斜45度的方法">将游戏视角调整为斜45度的方法</h4>
+
+<ol>
+<li>将Y轴旋转45度，X轴旋转30度（X轴控制高度，Y轴控制角度）。</li>
+<li>将Projection改为Orthographic。</li>
+<li>更改摄像机Size至合适大小。</li>
+</ol>
+
+<h4 id="角色移动控制">角色移动控制</h4>
+
+<ol>
+<li>将地面层的layer与tag设置完毕。</li>
+<li>使用射线确定鼠标点击位置。</li>
+<li>使用LookAt函数，使角色转向目标位置。</li>
+<li>使用rigidbody进行移动。</li>
+</ol>
+
+<h4 id="射线确定鼠标点击位置的方法">射线确定鼠标点击位置的方法</h4>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno">1</span> <span class="n">m_layerMask</span> <span class="p">=</span> <span class="m">1</span> <span class="p">&lt;&lt;</span> <span class="m">8</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="c1">// 根据鼠标在屏幕空间的位置计算射线</span>
+<span class="lineno">3</span> <span class="n">m_ray</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">ScreenPointToRay</span><span class="p">(</span><span class="n">Input</span><span class="p">.</span><span class="n">mousePosition</span><span class="p">);</span>
+<span class="lineno">4</span> <span class="c1">// 进行三维场景中的射线求交</span>
+<span class="lineno">5</span> <span class="k">if</span> <span class="p">(</span><span class="n">Physics</span><span class="p">.</span><span class="n">Raycast</span><span class="p">(</span><span class="n">m_ray</span><span class="p">,</span> <span class="k">out</span> <span class="n">m_hitInfo</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="n">m_layerMask</span><span class="p">))</span>
+<span class="lineno">6</span> <span class="p">{</span>          
+<span class="lineno">7</span>   <span class="c1">//TODO:...</span>
+<span class="lineno">8</span> <span class="p">}</span></code></pre></div>
+
+<h3 id="下一步">下一步</h3>
+
+<ol>
+<li>角色控制也许不使用rigidbody。</li>
+<li>增加可以呼唤女孩（暂名Windy）的位置，在那些位置上，玩家角色与之接触（或者按下某个键位）可以呼唤Windy，这样Windy就可以走到那里。</li>
+<li>Windy自动寻路。</li>
+<li>当Windy离开这些位置的时候，用于呼唤的魔石过一段时间之后会再度生长出来。</li>
+</ol>
+
+<h2 id="2015-12-14">2015.12.14</h2>
+
+<p>接着昨天的内容继续开发。</p>
+
+<h3 id="完成的工作">完成的工作</h3>
+
+<ol>
+<li>呼唤Windy。</li>
+<li>自动寻路。</li>
+<li>当Windy离开这些位置的时候，用于呼唤的魔石过一段时间之后会再度生长出来。</li>
+<li>使用自动寻路或角色控制器（Character Controller）用鼠标控制玩家角色移动。</li>
+<li>使用rigidbody暂时代替的推箱子。</li>
+</ol>
+
+<h4 id="呼唤windy与魔石生长">呼唤Windy与魔石生长</h4>
+
+<ol>
+<li>OnTriggerEnter()开启开关，并获得目标位置，记录Windy位置。</li>
+<li>Windy自动寻路。</li>
+<li>在Windy第二次离开目标位置之后，在Windy位置上生长魔石。</li>
+</ol>
+
+<h4 id="自动寻路">自动寻路</h4>
+
+<p>这是对我来说相对较新的知识点，原以为需要查找资料自造轮子或者使用插件，没想到Unity本身自带的Navigation就已经这样强大。</p>
+
+<ol>
+<li>为Windy绑定Nav Mesh Agent。</li>
+<li>选定墙壁、地板等不可穿越物件，选择Window - Navigation，勾选Nav Static，点击<strong>右下角</strong>Bake，生成Nav Mesh。</li>
+</ol>
+
+<p><img src="/assets/images/nav_mesh.png" alt="Nav Mesh" title="Nav Mesh"></p>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno">1</span> <span class="n">m_girl</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">NavMeshAgent</span><span class="p">&gt;().</span><span class="n">destination</span> <span class="p">=</span> <span class="n">target</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">;</span></code></pre></div>
+
+<h4 id="角色控制器">角色控制器</h4>
+
+<p>因为之前一直在做2D游戏，对于角色控制器没有过多关注；开始查找到的资料多为使用键盘控制角色移动。</p>
+
+<ol>
+<li>无需添加rigidbody。</li>
+<li>如果有重力，需要以isGrounded实现。</li>
+</ol>
+
+<p>使用<strong>鼠标</strong>移动角色如下：</p>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno">1</span> <span class="n">Vector3</span> <span class="n">tempMov</span> <span class="p">=</span> <span class="n">Vector3</span><span class="p">.</span><span class="n">ClampMagnitude</span><span class="p">(</span><span class="n">m_targetPos</span> <span class="p">-</span> <span class="k">this</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">speed</span><span class="p">);</span>
+<span class="lineno">2</span> <span class="k">this</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">CharacterController</span><span class="p">&gt;().</span><span class="n">Move</span><span class="p">(</span><span class="n">tempMov</span><span class="p">);</span></code></pre></div>
+
+<h3 id="2015-12-15">2015.12.15</h3>
+
+<p>今天并没有完成很多工作，原因是一些设计上的问题再次冒出头来，对我说“你压根没有想清楚！”。的确，这次想要开始动手编码源自于LD34，但后来因为时间的缘故并没有拿出作品参赛，总之是兴致一来就开始的行动。真正把颅内剧场实现才发现许多事情根本和自己的想象不同。</p>
+
+<p>比如，今天用了一些时间考虑了一下是否应该使用“呼唤区域”这个概念，因为它似乎限制住了玩家的自由性。但是，如果玩家在任何时候都能够呼唤Windy的话，则会造成两个问题：</p>
+
+<ol>
+<li>需要增加一个按键进行呼唤操作（当然，这个问题可以通过其他方式解决）。</li>
+<li>对于Windy移动过于自由的掌控会使得Windy是<strong>另一个人</strong>这个概念大大弱化。移动方式只是鼠标点击移动的繁琐升级版。<strong>这个问题是设计这款游戏的时候一定要时时刻刻留意的。</strong></li>
+</ol>
+
+<p>于是我也意识到<strong>将之前的设计想法、思路做一个汇总</strong>的必要性。这个汇总将包括之后打算尝试的新的可能，并且会按照得出的结论进行数个版本的修订。</p>
+
+<p>这样做的好处有以下几点：</p>
+
+<ol>
+<li>避免一些不必要的重复性工作。</li>
+<li>一定程度地将程序、美术与设计的工作分离开来。这种分离对于独立开发者是必要的，因为脑中内讧损伤的必然还是自己。</li>
+<li>使得游戏开发的计划性更强。</li>
+</ol>
+
+<p>最后完成的关卡示例终于展示了这款游戏的玩点之一，但是我最希望看到的玩家对于Windy的保护还没有那么强烈地展现出来，并且现在的游戏项目也没有用到真正开发游戏时需要的核心技术。尽管如此，游戏可以如此迅速地进入到使用可玩原型进行关卡搭建的阶段还是让我感到有些开心。</p>
+
+<p>P.S.觅得一个制作gif的利器licecap。</p>
+
+<h4 id="完成的工作">完成的工作</h4>
+
+<ol>
+<li>齿轮关卡示例。</li>
+<li>粗糙的关卡选择功能。</li>
+</ol>
+
+<p><img src="/assets/images/GearLevelDemo.gif" alt="GearLevelDemo" title="GearLevelDemo"></p>
+
+<h2 id="2015-12-17">2015.12.17</h2>
+
+<p>昨天停工一天，理了理<a href="http://ayame9joe.github.io/2015/GDD/">下一步要做的事情的头绪</a>，也去IndieAce取了取经。</p>
+
+<h3 id="完成的工作">完成的工作</h3>
+
+<ol>
+<li>为了制作开场动画而学习了几个与场景加载有关的函数，如<a href="http://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html">DontDestroyOnLoad()</a>（加载新的场景时不要销毁的物品，如各种Manager），<a href="http://docs.unity3d.com/ScriptReference/Application.LoadLevelAsync.html">LoadLevelAsync()</a>等。暂时并不会用到。</li>
+<li>研究了如何实现类似<em>推箱子</em>功能，但因为这个功能与移动方式本身之间关联非常紧密（我尚且没有想到使用鼠标点击移动的方式下如何推动箱子，而且不想做成键盘控制移动因为与移动平台过于不搭调），所以打算暂时使用开关移动平台功能代替。</li>
+<li>于是制作了开关移动平台这一功能：当玩家移动到开关周围时，鼠标点击开关，平台移动。</li>
+</ol>
+
+<h4 id="开关移动平台实现">开关移动平台实现</h4>
+
+<ol>
+<li>开关与平台绑定。</li>
+</ol>
+
+<p>平台相关代码：</p>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno"> 1</span> <span class="k">public</span> <span class="k">enum</span> <span class="n">MovableType</span> <span class="p">{</span>
+<span class="lineno"> 2</span>  <span class="n">left</span><span class="p">,</span>
+<span class="lineno"> 3</span>  <span class="n">right</span><span class="p">,</span>
+<span class="lineno"> 4</span>  <span class="n">up</span><span class="p">,</span>
+<span class="lineno"> 5</span>  <span class="n">down</span><span class="p">,</span>
+<span class="lineno"> 6</span>  <span class="n">forward</span><span class="p">,</span>
+<span class="lineno"> 7</span>  <span class="n">back</span>
+<span class="lineno"> 8</span> <span class="p">}</span>
+<span class="lineno"> 9</span> 
+<span class="lineno">10</span> <span class="k">public</span> <span class="n">MovableType</span> <span class="n">movableType</span><span class="p">;</span></code></pre></div>
+
+<p>开关相关代码：</p>
+
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="lineno">1</span> <span class="k">public</span> <span class="k">void</span> <span class="nf">SwitchOn</span> <span class="p">()</span> <span class="p">{</span>
+<span class="lineno">2</span>   <span class="k">switch</span> <span class="p">(</span><span class="n">Movable</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">MovableController</span><span class="p">&gt;</span> <span class="p">().</span><span class="n">movableType</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">3</span>   <span class="k">case</span> <span class="n">MovableController</span><span class="p">.</span><span class="n">MovableType</span><span class="p">.</span><span class="n">left</span><span class="p">:</span>
+<span class="lineno">4</span>       <span class="k">break</span><span class="p">;</span>
+<span class="lineno">5</span>   <span class="c1">//...  </span>
+<span class="lineno">6</span>   <span class="p">}</span>
+<span class="lineno">7</span> <span class="p">}</span></code></pre></div>
+
+<h4 id="动态寻路实现">动态寻路实现</h4>
+
+<ol>
+<li>选中地面，勾选Nav Static，烘焙Nav Mesh。</li>
+<li>为平台添加NavMeshObstable组件。</li>
+<li>勾选Carve选框。</li>
+</ol>
+
+<h2 id="2015-12-19">2015.12.19</h2>
+
+<h3 id="完成的工作">完成的工作</h3>
+
+<ol>
+<li>打算实现风可以通过，但Windy不能通过的关卡，因此学习了隔离自动寻路。</li>
+<li>以类似的方式实现了梯子与台阶的功能。</li>
+<li>实现风与Windy行走不同道路。</li>
+</ol>
+
+<h4 id="隔离自动寻路">隔离自动寻路</h4>
+
+<ol>
+<li>在Navigation窗口Object选项卡，勾选Generate OffMeshLinks。</li>
+<li> 在Navigation窗口Bake选项卡，设置Generate Off Mesh Links的drop heights与jump distance。</li>
+<li> 烘焙。</li>
+</ol>
+
+<h4 id="梯子与台阶">梯子与台阶</h4>
+
+<ol>
+<li>建立梯子游戏对象，添加Off Mesh Link组件。</li>
+<li>建立起始点与终结点的游戏对象，分别放置在Off Mesh Link的Start与End。</li>
+<li>关闭Auto Traverse Off Mesh Link以控制移动速度（代码见下方）。</li>
+<li>烘焙。</li>
+</ol>
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">void</span> <span class="nf">TraverseOffMeshLink</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">navMeshAgent</span><span class="p">.</span><span class="n">isOnOffMeshLink</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">linkData</span> <span class="p">=</span> <span class="n">navMeshAgent</span><span class="p">.</span><span class="n">currentOffMeshLinkData</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">DOMove</span><span class="p">(</span><span class="n">linkData</span><span class="p">.</span><span class="n">endPos</span><span class="p">,</span> <span class="m">2</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">Vector3</span><span class="p">.</span><span class="n">Distance</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">linkData</span><span class="p">.</span><span class="n">endPos</span><span class="p">)</span> <span class="p">&lt;</span> <span class="m">1</span><span class="p">){</span>
+            <span class="n">navMeshAgent</span><span class="p">.</span><span class="n">Resume</span><span class="p">();</span>
+            <span class="n">navMeshAgent</span><span class="p">.</span><span class="n">CompleteOffMeshLink</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="分道">分道</h4>
+
+<ol>
+<li>为Windy不能行走的道路Off Mesh Link设置Layer。</li>
+<li>在Windy的Nav Mesh Agent设置行走范围。</li>
+</ol>
 
 <hr>
 
 <p><strong>版权声明：自由转载-非商用-非衍生-保持署名（<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">创意共享3.0许可证</a>）</strong></p>
 
     </section>
+
+
+
 </article>
 
 
@@ -69,7 +293,7 @@
     </a>
 
     <section id="sharing">
-        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://ayame9joe.github.com/2015/devlog-2/ - 《Windy（暂定）》Week0.5 by @ayame9joe"><span class="icon-twitter"> Tweet</span></a>
+        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://ayame9joe.github.com/2015/devlog-2/ - 《Windy》Week1 by @ayame9joe"><span class="icon-twitter"> Tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
@@ -83,10 +307,10 @@
 
 <div class="PageNavigation">
   
-    <a class="prev" href="/2015/devlog-1/">&laquo; 《Windy（暂定）》Week0</a>
+    <a class="prev" href="/2015/devlog-1/">&laquo; 《Windy》Week0</a>
   
   
-    <a class="next" href="/2015/devlog-3/">W项目Week1 &raquo;</a>
+    <a class="next" href="/2015/GDD/">《Windy》任务看板 &raquo;</a>
   
 </div>
 
@@ -130,6 +354,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/highlight.js"></script>
+  <script src="/assets/js/toc.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
   <script>
@@ -140,6 +365,12 @@
 
     ga('create', 'UA-45533098-2', 'auto');
     ga('send', 'pageview');
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('#toc').toc();
+    });
   </script>
 </body>
 </html>

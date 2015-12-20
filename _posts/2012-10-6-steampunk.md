@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 争气朋克与游戏
+title: 蒸汽朋克与游戏
 description: 游戏中的蒸汽朋克关键词
 disqus: true
 tags: 专题
