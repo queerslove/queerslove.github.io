@@ -212,8 +212,13 @@ a,
 a.prev {float:left;}
 a.next {float: right;}
 
-ul 	{ margin:0; padding:0; }
-li	{ list-style-type:circle; list-style-position:inside; }
+ul li {
+    list-style-type: circle;
+    font-size: 80%;
+    line-height: 1.6em;
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+}
 
 li.next {
 	list-style: none;

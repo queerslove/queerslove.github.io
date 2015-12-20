@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>ayame9joe - Devlog 3</title>
+  <title>ayame9joe - W项目Week1</title>
   <link rel="shortcut icon" href="/assets/images/favicon.ico">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="alternate" type="application/rss+xml" title="My Blog" href="/rss.xml">
@@ -41,10 +41,12 @@
   <section id="wrapper" class="">
     <article class="post">
     <header>
-        <h1>Devlog 3</h1>
+        <h1>W项目Week1</h1>
         <h2 class="headline">December 13, 2015</h2>
+
     </header>
     <section id="post-body">
+        
         <h2 id="2015-12-13">2015.12.13</h2>
 
 <p>在把玩RPG Maker（并且意识到它的强大，然而）无果之后，重新开始使用Unity制作原型。与以往不同的是，为了实现类似《纪念碑谷》等游戏的斜45度效果，采用了3D而非熟悉的2D。</p>
@@ -183,7 +185,7 @@
 <h3 id="完成的工作">完成的工作</h3>
 
 <ol>
-<li>为了制作开场动画而学习了几个与场景加载有关的函数，如<a href="http://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html">DontDestroyOnLoad()</a>（加载新的场景时不要销毁的物品，如各种Manager），<a href="http://docs.unity3d.com/ScriptReference/Application.LoadLevelAsync.html">LoadLevelAsync</a>等。暂时并不会用到。</li>
+<li>为了制作开场动画而学习了几个与场景加载有关的函数，如<a href="http://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html">DontDestroyOnLoad()</a>（加载新的场景时不要销毁的物品，如各种Manager），<a href="http://docs.unity3d.com/ScriptReference/Application.LoadLevelAsync.html">LoadLevelAsync()</a>等。暂时并不会用到。</li>
 <li>研究了如何实现类似<em>推箱子</em>功能，但因为这个功能与移动方式本身之间关联非常紧密（我尚且没有想到使用鼠标点击移动的方式下如何推动箱子，而且不想做成键盘控制移动因为与移动平台过于不搭调），所以打算暂时使用开关移动平台功能代替。</li>
 <li>于是制作了开关移动平台这一功能：当玩家移动到开关周围时，鼠标点击开关，平台移动。</li>
 </ol>
@@ -224,14 +226,55 @@
 <li>为平台添加NavMeshObstable组件。</li>
 <li>勾选Carve选框。</li>
 </ol>
-<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cm">/* hello world demo */</span>
-<span class="cp">#include &lt;stdio.h&gt;</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello, World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+<h2 id="2015-12-19">2015.12.19</h2>
+
+<h3 id="完成的工作">完成的工作</h3>
+
+<ol>
+<li>打算实现风可以通过，但Windy不能通过的关卡，因此学习了隔离自动寻路。</li>
+<li>以类似的方式实现了梯子与台阶的功能。</li>
+<li>实现风与Windy行走不同道路。</li>
+</ol>
+
+<h4 id="隔离自动寻路">隔离自动寻路</h4>
+
+<ol>
+<li>在Navigation窗口Object选项卡，勾选Generate OffMeshLinks。</li>
+<li> 在Navigation窗口Bake选项卡，设置Generate Off Mesh Links的drop heights与jump distance。</li>
+<li> 烘焙。</li>
+</ol>
+
+<h4 id="梯子与台阶">梯子与台阶</h4>
+
+<ol>
+<li>建立梯子游戏对象，添加Off Mesh Link组件。</li>
+<li>建立起始点与终结点的游戏对象，分别放置在Off Mesh Link的Start与End。</li>
+<li>关闭Auto Traverse Off Mesh Link以控制移动速度（代码见下方）。</li>
+<li>烘焙。</li>
+</ol>
+<div class="highlight"><pre><code class="language-c#" data-lang="c#"><span class="k">void</span> <span class="nf">TraverseOffMeshLink</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">navMeshAgent</span><span class="p">.</span><span class="n">isOnOffMeshLink</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">linkData</span> <span class="p">=</span> <span class="n">navMeshAgent</span><span class="p">.</span><span class="n">currentOffMeshLinkData</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">DOMove</span><span class="p">(</span><span class="n">linkData</span><span class="p">.</span><span class="n">endPos</span><span class="p">,</span> <span class="m">2</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">Vector3</span><span class="p">.</span><span class="n">Distance</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">linkData</span><span class="p">.</span><span class="n">endPos</span><span class="p">)</span> <span class="p">&lt;</span> <span class="m">1</span><span class="p">){</span>
+            <span class="n">navMeshAgent</span><span class="p">.</span><span class="n">Resume</span><span class="p">();</span>
+            <span class="n">navMeshAgent</span><span class="p">.</span><span class="n">CompleteOffMeshLink</span><span class="p">();</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<h4 id="分道">分道</h4>
+
+<ol>
+<li>为Windy不能行走的道路Off Mesh Link设置Layer。</li>
+<li>在Windy的Nav Mesh Agent设置行走范围。</li>
+</ol>
+
+<hr>
+
+<p><strong>版权声明：自由转载-非商用-非衍生-保持署名（<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">创意共享3.0许可证</a>）</strong></p>
+
     </section>
 </article>
 
@@ -246,7 +289,7 @@
     </a>
 
     <section id="sharing">
-        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://ayame9joe.github.com/2015/devlog-3/ - Devlog 3 by @ayame9joe"><span class="icon-twitter"> Tweet</span></a>
+        <a class="twitter" href="https://twitter.com/intent/tweet?text=http://ayame9joe.github.com/2015/devlog-3/ - W项目Week1 by @ayame9joe"><span class="icon-twitter"> Tweet</span></a>
 
 <a class="facebook" href="#" onclick="
     window.open(
@@ -260,10 +303,10 @@
 
 <div class="PageNavigation">
   
-    <a class="prev" href="/2015/devlog-2/">&laquo; Devlog 2</a>
+    <a class="prev" href="/2015/devlog-2/">&laquo; 《Windy（暂定）》Week0.5</a>
   
   
-    <a class="next" href="/2015/GDD/">Gdd &raquo;</a>
+    <a class="next" href="/2015/GDD/">《Windy（暂定）》任务看板 &raquo;</a>
   
 </div>
 

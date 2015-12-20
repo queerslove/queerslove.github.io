@@ -7,7 +7,7 @@
     <atom:link href="‘ayame9joe.github.io’/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
-        <title>Gdd</title>
+        <title>《Windy（暂定）》任务看板</title>
         
         
           <description>&lt;h2 id=&quot;关卡设计与制作&quot;&gt;关卡设计与制作&lt;/h2&gt;
@@ -19,7 +19,7 @@
       </item>
     
       <item>
-        <title>Devlog 3</title>
+        <title>W项目Week1</title>
         
         
           <description>&lt;h2 id=&quot;2015-12-13&quot;&gt;2015.12.13&lt;/h2&gt;
@@ -31,7 +31,7 @@
       </item>
     
       <item>
-        <title>Devlog 2</title>
+        <title>《Windy（暂定）》Week0.5</title>
         
         
           <description>&lt;p&gt;目前希望做的美术风格是矢量绘图的斜45度风或者低模风。可以参考《纪念碑谷》或者《劳拉go》。&lt;/p&gt;
@@ -43,7 +43,7 @@
       </item>
     
       <item>
-        <title>Devlog 1</title>
+        <title>《Windy（暂定）》Week0</title>
         
         
           <description>&lt;p&gt;如何以风之骑士的姿态保护女孩的旅程，如果你只能一定程度地影响游戏之中的环境。你只是风。&lt;/p&gt;
@@ -55,10 +55,11 @@
       </item>
     
       <item>
-        <title>Prune</title>
+        <title>《Prune》</title>
         
         
-          <description></description>
+          <description>&lt;p&gt;这是一件交互艺术的珍品，也以其强烈的张力、高度的表现力证明：在游戏作品之中，不以传统方式的叙事，而只凭借丰富且有深度、有层次的互动就能够获得玩家的共鸣，从而达到深层的情感体验。&lt;/p&gt;
+</description>
         
         <pubDate>Tue, 01 Dec 2015 00:00:00 +0800</pubDate>
         <link>‘ayame9joe.github.io’/2015/prune/</link>
@@ -66,7 +67,7 @@
       </item>
     
       <item>
-        <title>Octodad</title>
+        <title>《章鱼奶爸》</title>
         
         
           <description>&lt;h2 id=&quot;基于物理操作的轻喜剧冒险&quot;&gt;基于物理操作的轻喜剧冒险&lt;/h2&gt;

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 《纪念碑谷》
-description:不说废话的关卡
+description: 不说废话的关卡
 disqus: true
 tags: 游戏分析
 ---
