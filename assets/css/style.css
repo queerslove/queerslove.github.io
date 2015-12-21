@@ -34,7 +34,7 @@ body {
 
 body p {
 
-    font-size: 80%;
+    font-size: 16px;
     line-height: 1.6em;
     margin-top: 0.8em;
     margin-bottom: 0.8em;
@@ -739,7 +739,7 @@ h2.month {
 
 .listing-item a {
 	color: #222;
-    font-size: 80%;
+    font-size: 16px;
     line-height: 0.6em;
     margin-top: 0.3em;
     margin-bottom: 0.3em;
