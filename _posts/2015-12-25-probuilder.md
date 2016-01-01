@@ -8,7 +8,8 @@ tags: Unity
 
 1. 层次：对象，点，线，面。
 2. Auto UV。
-3. 
+3. Shift：Extrude。
+4. Alt + C：合并顶点。
 
 
 ---
