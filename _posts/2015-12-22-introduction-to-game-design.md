@@ -3,7 +3,7 @@ layout: post
 title: 《Introduction to Game Design》笔记
 description: 加州艺术学院公开课
 disqus: true
-tags: 笔记
+tags: 游戏设计
 ---
 [这里](https://www.coursera.org/learn/game-design)是课程链接。
 ##游戏相关概念
