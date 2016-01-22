@@ -3,6 +3,6 @@ title: 404
 layout: default
 ---
 
-Nothing found :(
+这里什么也没有 :(
 
-But you still can have a [look around](/index.html)
+但是你可以[四处](/index.html)转转。
