@@ -230,13 +230,7 @@ li.previous {
 	float:left;
 }
 
-ol li {
-  list-style-type: decimal;
-  font-size: 16px;
-  line-height: 1.6em;
-  margin-top: 0.8em;
-  margin-bottom: 0.8em;
-}
+
 
 /* Line Height */
 
@@ -967,3 +961,56 @@ sup {
 #toc ol li{
 	list-style-type: none;
 }
+
+html>/**/body ol { /* Won't be interpreted by IE6/7. */
+                list-style-type: none;
+
+  font-size: 16px;
+  line-height: 1.6em;
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+                counter-reset: level1;
+            }
+            ol li:before {
+                content: counter(level1) ". ";
+                counter-increment: level1;
+            }
+            ol li ol {
+                list-style-type: none;
+                counter-reset: level2;
+            }
+            ol li ol li:before {
+                padding-left: 15px;
+                content: counter(level1) "." counter(level2) " ";
+                counter-increment: level2;
+            }
+            ol li ol li ol {
+                list-style-type: none;
+                counter-reset: level3;
+            }
+            ol li ol li ol li:before {
+            	padding-left: 30px;
+                content: counter(level1) "."counter(level2) "." counter(level3) " ";
+                counter-increment: level3;
+            }
+            ol li ol li ol li ol{
+                list-style-type: none;
+                counter-reset: level4;
+            }
+            ol li ol li ol li ol li:before {
+            	padding-left: 45px;
+                content: counter(level1) "."counter(level2) "."counter(level3) "." counter(level4) " ";
+                counter-increment: level4;
+            }
+            ol li ol li ol li ol li ol {
+                list-style-type: none;
+                counter-reset: level5;
+            }
+            ol li ol li ol li ol li ol li:before {
+            	padding-left: 60px;
+                content: counter(level1) "."counter(level2) "."counter(level3) "."counter(level4) "." counter(level5) " ";
+                counter-increment: level5;
+            }
+            ol li span { /* For IE6/7. */
+                margin: 0 5px 0 -25px;
+            }
