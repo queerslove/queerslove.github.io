@@ -1011,6 +1011,15 @@ html>/**/body ol { /* Won't be interpreted by IE6/7. */
                 content: counter(level1) "."counter(level2) "."counter(level3) "."counter(level4) "." counter(level5) " ";
                 counter-increment: level5;
             }
+            ol li ol li ol li ol li ol li ol {
+                list-style-type: none;
+                counter-reset: level6;
+            }
+            ol li ol li ol li ol li ol li ol li:before {
+            	padding-left: 75px;
+                content: counter(level1) "."counter(level2) "."counter(level3) "."counter(level4) "." counter(level5) "." counter(level6) " ";
+                counter-increment: level6;
+            }
             ol li span { /* For IE6/7. */
                 margin: 0 5px 0 -25px;
             }

@@ -52,9 +52,7 @@ tags: Unity
 	2. 优化设计
 		1. PoolManager
 			1. SpawnPool（管理一类物体，定义为空物体，用字典管理PrefabPool）
-				1. PrefabPool（两个List，管理加载/卸载过程）
-					1. ActivePool
-					1. InactivePool
+				1. PrefabPool（两个List(ActivePool，InactivePool)，管理加载/卸载过程）
 	3. 简单设计示例代码:
 					
 ``` C#

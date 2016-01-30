@@ -13,6 +13,8 @@ $(document).ready(function() {
         li.prepend('<span>' + level4 + '</span>');
         var level5 = level4 + '.' + (li.index() + 1);
         li.prepend('<span>' + level5 + '</span>');
+        var level6 = level5 + '.' + (li.index() + 1);
+        li.prepend('<span>' + level6 + '</span>');
       });
     });
   }
