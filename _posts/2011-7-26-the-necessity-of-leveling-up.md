@@ -3,7 +3,7 @@ layout: post
 title: 角色扮演游戏设计杂谈之③
 description: 练级，真的必要吗？
 disqus: true
-tags: 游戏理论
+tags: 游戏设计
 ---
 此前的文章谈到角色扮演游戏之中战斗系统至上的必然，此篇旨在论述以战斗为核心乐趣的战斗系统设计。
 

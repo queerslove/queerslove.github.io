@@ -3,7 +3,7 @@ layout: post
 title: 游戏难度初探
 description: 一系列不必要的挑战与障碍
 disqus: true
-tags: 游戏理论
+tags: 游戏设计
 ---
 
 

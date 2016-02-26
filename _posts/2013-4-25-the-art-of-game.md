@@ -4,7 +4,7 @@ layout: post
 title: 游戏的艺术性
 description: 一款手机游戏简评
 disqus: true
-tags: 游戏理论
+tags: 游戏设计
 ---
 ##游戏的艺术性：宏观概念
 

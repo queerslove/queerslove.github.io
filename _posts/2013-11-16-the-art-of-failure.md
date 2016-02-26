@@ -4,7 +4,7 @@ layout: post
 title: 牵一发而动全身：THE ART OF FAILURE
 description: Jesper Juul的小书
 disqus: true
-tags: 游戏理论 读书
+tags: 游戏设计 读书
 ---
 Kindle版图书已经买来很久。虽然是本小册子，但还是拖延直到今天才读完。不过，这种拖延绝非内容不够精彩。事实上，这种借由一个概念论述开来，牵一发而动全身的研讨实在出色极了——基本上是我所能够想到的游戏相关研究著作的最为理想的形式。当然，相较于大部头的更为严肃的作品来说，这本小书显得并不那么深刻，带有普及与通俗的味道，但这种普及并不能够削弱其学术地位。游戏原型探讨、心理问卷调查以及大量的学术文章引用，所有学术论文应该有的内容，The Art of Failure应有尽有，毕竟，它的副标题就叫做An Essay on the Pain of Playing Video Games。值得一提的是，本书所在专辑题为Playful Thinking Series，似与本站的站名有异曲同工之妙。
 
