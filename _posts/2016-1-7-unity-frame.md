@@ -55,7 +55,7 @@ tags: Unity
 				1. PrefabPool（两个List(ActivePool，InactivePool)，管理加载/卸载过程）
 	3. 简单设计示例代码:
 					
-``` C#
+{% highlight c# bash linenos %}
 public GameObject Spawn(GameObject go) {
 	GameObject temp = null;
 	if(dormantObjects.Count  > 0){
@@ -89,8 +89,7 @@ public void Trim() {
 		Destroy(dob);
 	}
 }
-
-```
+{% endhighlight %}
 ##结论
 1. 资深团队可以使用框架，并且可以选择性地使用。
 2. 框架如果不能使用得当，将会导致效率下降。
