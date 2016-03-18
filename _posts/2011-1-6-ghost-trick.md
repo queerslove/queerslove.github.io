@@ -3,11 +3,8 @@
 layout: post
 title: 《GHOST TRICK》
 description: 叙事与冒险
-title: 类型化、机制创新与情感体验
-description: 情感体验设计的发展将遵循模式
 disqus: true
 tags: 游戏分析
-tags: 游戏设计
 ---
 ##游戏资料
 
