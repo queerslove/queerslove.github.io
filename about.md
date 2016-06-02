@@ -11,7 +11,7 @@ profile: true
 
 <div align=center>
 	[indienova](http://indienova.com/)
-</div>
+
 
 ***
 
@@ -22,6 +22,8 @@ Built with [Jekyll](http://jekyllrb.com/).
 <br>Hosted on [Github Pages](https://pages.github.com/).
 <br>Based on the [Lonely](https://github.com/ayame9joe/ayame9joe.github.io) theme.
 <br>Feel free to [fork](https://github.com/ayame9joe/ayame9joe.github.io), change, modify and re-use it.
+
+</div>>
 {% include footer.html %}
 
 
