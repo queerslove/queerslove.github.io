@@ -9,9 +9,7 @@ profile: true
 
 ***
 
-<div align=center>
-	[indienova](http://indienova.com/)
-
+	[indienova](http://indienova.com/)旨在建立一个富有独立精神的开放平台，专注于为游戏开发者解决实际问题，完成更好的作品。
 
 ***
 
