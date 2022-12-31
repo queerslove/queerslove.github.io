@@ -1,6 +1,6 @@
-name: ayame9joe
+name: queerslove
 description: playful thoughts
-meta_description: "ayame9joe, playful thoughts"
+meta_description: "queerslove, playful thoughts"
 
 aboutPage: true
 
@@ -12,15 +12,15 @@ highlighter: rouge
 
 paginate: 20
 baseurl: /
-domain_name: 'http://ayame9joe.github.com'
+domain_name: 'http://queerslove.github.io'
 google_analytics: 'UA-45533098-2'
 disqus: true
-disqus_shortname: ‘ayame9joe’
+disqus_shortname: ‘queerslove’
 
 # Details for the RSS feed generator
-url:            ‘ayame9joe.github.io’
-author:         'ayame9joe'
-authorTwitter:  'ayame9joe'
+url:            ‘queerslove.github.io’
+author:         'queerslove'
+authorTwitter:  'queerslove'
 
 permalink:       /:year/:title/
 
